@@ -1,17 +1,14 @@
 <div id="main_header">
   <header>
     <div class="header-innr">
-
-
       <!-- Logo-->
       <div class="header-btn-traiger" uk-toggle="target: #wrapper ; cls: collapse-sidebar mobile-visible">
         <span></span></div>
 
       <!-- Logo-->
       <div id="logo">
-        <a href="homepage.html"> <img src="{{ asset('assets/default-theme/images/logo.png') }}" alt=""></a>
-        <a href="homepage.html"> <img src="{{ asset('assets/default-theme/images/logo-light.png') }}" class="logo-inverse"
-                                      alt=""></a>
+        <a href="{{ url('/') }}"> <img src="{{ asset('assets/images/logo.png') }}" alt=""></a>
+        <a href="{{ url('/') }}"> <img src="{{ asset('assets/images/logo-light.png') }}" class="logo-inverse" alt=""></a>
       </div>
 
       <!-- form search-->
@@ -25,6 +22,7 @@
 
           <!-- Search box dropdown -->
           <div uk-dropdown="pos: top;mode:click;animation: uk-animation-slide-bottom-small"
+               style="display:none"
                class="dropdown-search">
             <!-- User menu -->
 
@@ -42,28 +40,27 @@
               <li class="list-footer"><a href="your-history.html"> Searches History </a>
               </li>
             </ul>
-
           </div>
-
-
         </form>
       </div>
 
       <!-- user icons -->
       <div class="head_user">
-
-
-        <a href="homepage.html" class="opts_icon_link uk-visible@s"> Home </a>
-        <a href="timeline.html" class="opts_icon_link uk-visible@s"> Dennis Han </a>
-
+        <a href="#" class="opts_icon uk-visible@s" uk-tooltip="title:动态; pos:bottom; offset:7;">
+          <img src="{{ asset('assets/default-theme/images/icons/home.png') }}">
+        </a>
+        <a href="#" class="opts_icon uk-visible@s" uk-tooltip="title:小组; pos:bottom; offset:7;">
+          <img src="{{ asset('assets/default-theme/images/icons/group.png') }}">
+        </a>
 
         <!-- browse apps  -->
-        <a href="#" class="opts_icon uk-visible@s" uk-tooltip="title: Apps ; pos: bottom ;offset:7">
+        <a href="#" class="opts_icon uk-visible@s" uk-tooltip="title:更多; pos:bottom; offset:7">
           <img src="{{ asset('assets/default-theme/images/icons/apps.svg') }}" alt="">
         </a>
 
         <!-- browse apps dropdown -->
         <div uk-dropdown="mode:click ; pos: bottom-center ; animation: uk-animation-scale-up"
+             style="display:none"
              class="icon-browse">
           <a href="#" class="icon-menu-item"> <i class="uil-shop"></i> Marketplace </a>
           <a href="#" class="icon-menu-item"> <i class="uil-envelope-alt"></i> Messages </a>
@@ -77,143 +74,15 @@
           <a href="#" class="more-app"> More Apps</a>
         </div>
 
-
-        <!-- Message  notificiation dropdown -->
-        <a href="#" class="opts_icon" uk-tooltip="title: Messages ; pos: bottom ;offset:7">
-          <img src="{{ asset('assets/default-theme/images/icons/chat.svg') }}" alt=""> <span>4</span>
-        </a>
-
-        <!-- Message  notificiation dropdown -->
-        <div uk-dropdown="mode:click ; animation: uk-animation-slide-bottom-small"
-             class="dropdown-notifications">
-
-          <!-- notification contents -->
-          <div class="dropdown-notifications-content" data-simplebar>
-
-            <!-- notivication header -->
-            <div class="dropdown-notifications-headline">
-              <h4>Messages</h4>
-              <a href="#">
-                <i class="icon-feather-settings"
-                   uk-tooltip="title: Message settings ; pos: left"></i>
-              </a>
-
-              <input type="text" class="uk-input" placeholder="Search in Messages">
-            </div>
-
-            <!-- notiviation list -->
-            <ul>
-              <li>
-                <a href="#">
-                                            <span class="notification-avatar status-online">
-                                                <img src="{{ asset('assets/default-theme/images/avatars/avatar-2.jpg') }}" alt="">
-                                            </span>
-                  <div class="notification-text notification-msg-text">
-                    <strong>Jonathan Madano</strong>
-                    <p>Thanks for The Answer ... <span class="time-ago"> 2 h </span></p>
-
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                                            <span class="notification-avatar">
-                                                <img src="{{ asset('assets/default-theme/images/avatars/avatar-3.jpg') }}" alt="">
-                                            </span>
-                  <div class="notification-text notification-msg-text">
-                    <strong>Stella Johnson</strong>
-                    <p> Alex will explain you how ... <span class="time-ago"> 3 h </span>
-                    </p>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                                            <span class="notification-avatar status-online">
-                                                <img src="{{ asset('assets/default-theme/images/avatars/avatar-1.jpg') }}" alt="">
-                                            </span>
-                  <div class="notification-text notification-msg-text">
-                    <strong>Alex Dolgove</strong>
-                    <p> Alia just joined Messenger! <span class="time-ago"> 3 h </span></p>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                                            <span class="notification-avatar status-online">
-                                                <img src="{{ asset('assets/default-theme/images/avatars/avatar-4.jpg') }}" alt="">
-                                            </span>
-                  <div class="notification-text notification-msg-text">
-                    <strong>Adrian Mohani</strong>
-                    <p>Thanks for The Answer ... <span class="time-ago"> 2 h </span></p>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                                            <span class="notification-avatar">
-                                                <img src="{{ asset('assets/default-theme/images/avatars/avatar-2.jpg') }}" alt="">
-                                            </span>
-                  <div class="notification-text notification-msg-text">
-                    <strong>Jonathan Madano</strong>
-                    <p>Thanks for The Answer ... <span class="time-ago"> 2 h </span></p>
-
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                                            <span class="notification-avatar">
-                                                <img src="{{ asset('assets/default-theme/images/avatars/avatar-3.jpg') }}" alt="">
-                                            </span>
-                  <div class="notification-text notification-msg-text">
-                    <strong>Stella Johnson</strong>
-                    <p> Alex will explain you how ... <span class="time-ago"> 3 h </span>
-                    </p>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                                            <span class="notification-avatar">
-                                                <img src="{{ asset('assets/default-theme/images/avatars/avatar-1.jpg') }}" alt="">
-                                            </span>
-                  <div class="notification-text notification-msg-text">
-                    <strong>Alex Dolgove</strong>
-                    <p> Alia just joined Messenger! <span class="time-ago"> 3 h </span></p>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                                            <span class="notification-avatar">
-                                                <img src="{{ asset('assets/default-theme/images/avatars/avatar-4.jpg') }}" alt="">
-                                            </span>
-                  <div class="notification-text notification-msg-text">
-                    <strong>Adrian Mohani</strong>
-                    <p>Thanks for The Answer ... <span class="time-ago"> 2 h </span></p>
-                  </div>
-                </a>
-              </li>
-            </ul>
-
-          </div>
-          <div class="dropdown-notifications-footer">
-            <a href="#"> See all in Messages</a>
-          </div>
-
-
-        </div>
-
-
         <!-- notificiation icon  -->
-        <a href="#" class="opts_icon" uk-tooltip="title: Notifications ; pos: bottom ;offset:7">
+        <a href="#" class="opts_icon" uk-tooltip="title:通知; pos:bottom; offset:7;">
           <img src="{{ asset('assets/default-theme/images/icons/bell.svg') }}" alt=""> <span>3</span>
         </a>
 
 
         <!-- notificiation dropdown -->
         <div uk-dropdown="mode:click ; animation: uk-animation-slide-bottom-small"
+             style="display:none"
              class="dropdown-notifications">
 
           <!-- notification contents -->
@@ -327,6 +196,7 @@
 
         <!-- profile dropdown-->
         <div uk-dropdown="mode:click ; animation: uk-animation-slide-bottom-small"
+             style="display:none"
              class="dropdown-notifications rounded">
 
           <!-- User Name / Avatar -->
