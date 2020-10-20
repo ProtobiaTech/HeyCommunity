@@ -13,13 +13,13 @@
 
       <div class="sections">
         <ul>
-          <li class="active">
-            <a href="homepage.html"> <img src="{{ asset('assets/default-theme/images/icons/home.png') }}" alt="">
+          <li class="{{ request()->routeIs('timelines.*') ? 'active' : '' }}">
+            <a href="{{ route('timelines.index') }}"> <img src="{{ asset('assets/default-theme/images/icons/home.png') }}">
               <span>动态</span>
             </a>
           </li>
-          <li>
-            <a href="groups.html"> <img src="{{ asset('assets/default-theme/images/icons/group.png') }}" alt="">
+          <li class="{{ request()->routeIs('groups.*') ? 'active' : '' }}">
+            <a href="{{ route('groups.index') }}"> <img src="{{ asset('assets/default-theme/images/icons/group.png') }}">
               <span>小组</span> </a>
           </li>
         </ul>

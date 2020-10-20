@@ -17,7 +17,7 @@
         <i class="uil-users-alt p-1 text-dark bg-white circle icon-small"></i>
         小组 </h3>
       <p>New ways to find and join communications.</p>
-      <a href="#" class="button white small">发现你感兴趣的小组</a>
+      <a href="{{ route('groups.index') }}" class="button white small">发现你感兴趣的小组</a>
     </div>
   </div>
 
@@ -29,7 +29,7 @@
         <h3>活跃小组</h3>
       </div>
       <div class="section-header-right">
-        <a href="#" class="see-all text-primary">查看全部</a>
+        <a href="{{ route('groups.index') }}" class="see-all text-primary">查看全部</a>
       </div>
     </div>
 
@@ -179,7 +179,6 @@
 
     </div>
 
-    <a href="#" class="button secondary block my-3">查看全部</a>
-
+    <a href="{{ route('groups.index') }}" class="button secondary block my-3">查看全部</a>
   </div>
 </div>

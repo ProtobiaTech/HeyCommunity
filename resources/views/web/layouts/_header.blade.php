@@ -7,8 +7,8 @@
 
       <!-- Logo-->
       <div id="logo">
-        <a href="{{ url('/') }}"> <img src="{{ asset('assets/images/logo.png') }}" alt=""></a>
-        <a href="{{ url('/') }}"> <img src="{{ asset('assets/images/logo-light.png') }}" class="logo-inverse" alt=""></a>
+        <a href="{{ route('home') }}"> <img src="{{ asset('assets/images/logo.png') }}" alt=""></a>
+        <a href="{{ route('home') }}"> <img src="{{ asset('assets/images/logo-light.png') }}" class="logo-inverse" alt=""></a>
       </div>
 
       <!-- form search-->
@@ -46,10 +46,10 @@
 
       <!-- user icons -->
       <div class="head_user">
-        <a href="#" class="opts_icon uk-visible@s" uk-tooltip="title:动态; pos:bottom; offset:7;">
+        <a href="{{ route('timelines.index') }}" class="opts_icon uk-visible@s" uk-tooltip="title:动态; pos:bottom; offset:7;">
           <img src="{{ asset('assets/default-theme/images/icons/home.png') }}">
         </a>
-        <a href="#" class="opts_icon uk-visible@s" uk-tooltip="title:小组; pos:bottom; offset:7;">
+        <a href="{{ route('groups.index') }}" class="opts_icon uk-visible@s" uk-tooltip="title:小组; pos:bottom; offset:7;">
           <img src="{{ asset('assets/default-theme/images/icons/group.png') }}">
         </a>
 
