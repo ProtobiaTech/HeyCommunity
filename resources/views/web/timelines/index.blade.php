@@ -590,19 +590,13 @@
                   <span class="uil-image"></span>
                 </div>
               </div>
-
             </div>
-
           </div>
-
-
         </div>
-
-
       </div>
 
       <!-- sidebar -->
-      @include('web.home._sidebar')
+      @include('web.timelines._sidebar')
     </div>
   </div>
 @endsection

@@ -14,5 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('web.home.index');
+    return redirect()->route('timelines.index');
 });
+
+Route::get('timelines', function () {
+    return view('web.timelines.index');
+})->name('timelines.index');
