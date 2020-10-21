@@ -18,7 +18,8 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('timelines', function () {
-    return view('web.timelines.index');
+    $timelines = \App\Models\Timeline::paginate();
+    return view('web.timelines.index', compact('timelines'));
 })->name('timelines.index');
 
 Route::get('groups', function () {
