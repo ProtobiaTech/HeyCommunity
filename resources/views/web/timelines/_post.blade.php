@@ -10,7 +10,7 @@
     </div>
     <div class="post-btn-action">
       <span class="icon-more uil-ellipsis-h"></span>
-      <div class="mt-0 p-2" uk-dropdown="pos:bottom-right; mode:hover;">
+      <div class="mt-0 p-2" uk-dropdown="pos:bottom-right; mode:hover;" style="display:none;">
         <ul class="uk-nav uk-dropdown-nav">
           <li><a href="#"><i class="uil-share-alt mr-1"></i>分享</a></li>
           <li><a href="#"><i class="uil-edit-alt mr-1"></i>编辑</a></li>
@@ -52,28 +52,28 @@
 
   <!-- post comments -->
   <div class="post-comments">
-    @if (random_int(1, 10) > 6 || $timeline->comments->count())
-      <a href="#" class="view-more-comment"> Veiw 8 more Comments</a>
+    @if ($timeline->comments->count())
+      <a href="#" class="view-more-comment"> 显示全部 {{ $timeline->comments->count() }} 个评论</a>
+      @foreach($timeline->comments as $comment)
         <div class="post-comments-single">
           <div class="post-comment-avatar">
-            <img src="assets/images/avatars/avatar-5.jpg" alt="">
+            <img src="{{ $comment->user->avatar }}" alt="{{ $comment->user->nickname }}">
           </div>
           <div class="post-comment-text">
             <div class="post-comment-text-inner">
-              <h6> Alex Dolgove</h6>
-              <p> Ut wisi enim ad minim laoreet dolore magna aliquam erat </p>
+              <h6>{{ $comment->user->nickname }}</h6>
+              <p>{{ $comment->content }}</p>
             </div>
             <div class="uk-text-small">
-              <a href="#" class="text-danger mr-1"> <i class="uil-heart"></i> Love </a>
-              <a href="#" class=" mr-1"> Replay </a>
-              <span> 1d</span>
+              <a href="#" class="text-dark mr-1"> <i class="uil-thumbs-up"></i>点赞</a>
+              <a href="#" class=" mr-1">回复</a>
+              <span>{{ $comment->created_at->diffForHumans() }}</span>
             </div>
           </div>
           <a href="#" class="post-comment-opt"></a>
         </div>
-      @foreach($timeline->comments as $comment)
       @endforeach
-      <a href="#" class="view-more-comment"> Veiw 8 more Comments</a>
+      <a href="#" class="view-more-comment"> 显示全部 {{ $timeline->comments->count() }} 个评论</a>
     @endif
 
     <div class="post-add-comment">
