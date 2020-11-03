@@ -31,9 +31,9 @@
   @font-face {
     font-family: 'Brand-Icons';
     src:
-      url('../fonts/Brand-Icons036a.ttf?blcw31') format('truetype'),
-      url('../fonts/Brand-Icons036a.woff?blcw31') format('woff'),
-      url('../fonts/Brand-Icons036a.svg?blcw31#Brand-Icons') format('svg');
+      url('../fonts/Brand-Icons.ttf?blcw31') format('truetype'),
+      url('../fonts/Brand-Icons.woff?blcw31') format('woff'),
+      url('../fonts/Brand-Icons.svg?blcw31#Brand-Icons') format('svg');
     font-weight: normal;
     font-style: normal;
   }
@@ -1515,9 +1515,9 @@
   @font-face {
     font-family: 'Feather-Icons';
     src:
-      url('../fonts/Feather-Iconse198.ttf?7ncawf') format('truetype'),
-      url('../fonts/Feather-Iconse198.woff?7ncawf') format('woff'),
-      url('../fonts/Feather-Iconse198.svg?7ncawf#Feather-Icons') format('svg');
+      url('../fonts/Feather-Icons.ttf?7ncawf') format('truetype'),
+      url('../fonts/Feather-Icons.woff?7ncawf') format('woff'),
+      url('../fonts/Feather-Icons.svg?7ncawf#Feather-Icons') format('svg');
     font-weight: normal;
     font-style: normal;
   }
@@ -2612,9 +2612,9 @@
   @font-face {
     font-family: 'Material-Icons';
     src:
-      url('../fonts/Material-Iconsb7df.ttf?e8u1sb') format('truetype'),
-      url('../fonts/Material-Iconsb7df.woff?e8u1sb') format('woff'),
-      url('../fonts/Material-Iconsb7df.svg?e8u1sb#Material-Icons') format('svg');
+      url('../fonts/Material-Icons.ttf?e8u1sb') format('truetype'),
+      url('../fonts/Material-Icons.woff?e8u1sb') format('woff'),
+      url('../fonts/Material-Icons.svg?e8u1sb#Material-Icons') format('svg');
     font-weight: normal;
     font-style: normal;
   }
@@ -3264,9 +3264,9 @@
   @font-face {
     font-family: 'Line-Awesome';
     src:
-      url('../fonts/Line-Awesomea4dd.ttf?15lwq9') format('truetype'),
-      url('../fonts/Line-Awesomea4dd.woff?15lwq9') format('woff'),
-      url('../fonts/Line-Awesomea4dd.svg?15lwq9#Line-Awesome') format('svg');
+      url('../fonts/Line-Awesome.ttf?15lwq9') format('truetype'),
+      url('../fonts/Line-Awesome.woff?15lwq9') format('woff'),
+      url('../fonts/Line-Awesome.svg?15lwq9#Line-Awesome') format('svg');
     font-weight: normal;
     font-style: normal;
   }
@@ -5926,13 +5926,13 @@
     font-family: 'Material Icons';
     font-style: normal;
     font-weight: 400;
-    src: url(../fonts/MaterialIcons-Regular.html);
+    src: url(../fonts/MaterialIcons-Regular.eot);
     /* For IE6-8 */
     src: local('Material Icons'),
       local('MaterialIcons-Regular'),
-      url(../fonts/MaterialIcons-Regular-2.html) format('woff2'),
-      url(../fonts/MaterialIcons-Regular-3.html) format('woff'),
-      url(../fonts/MaterialIcons-Regular-4.html) format('truetype');
+      url(../fonts/MaterialIcons-Regular.woff2) format('woff2'),
+      url(../fonts/MaterialIcons-Regular.woff) format('woff'),
+      url(../fonts/MaterialIcons-Regular.ttf) format('truetype');
   }
 
 
