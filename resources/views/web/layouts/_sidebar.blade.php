@@ -10,22 +10,24 @@
   <!-- sidebar Menu -->
   <div class="sidebar">
     <div class="sidebar_innr" data-simplebar>
-
       <div class="sections">
         <ul>
           <li class="{{ request()->routeIs('timelines.*') ? 'active' : '' }}">
-            <a href="{{ route('timelines.index') }}"> <img src="{{ asset('assets/default-theme/images/icons/home.png') }}">
+            <a href="{{ route('timelines.index') }}">
+              <img src="{{ asset('assets/default-theme/images/icons/home.png') }}">
               <span>动态</span>
             </a>
           </li>
           <li class="{{ request()->routeIs('groups.*') ? 'active' : '' }}">
-            <a href="{{ route('groups.index') }}"> <img src="{{ asset('assets/default-theme/images/icons/group.png') }}">
-              <span>小组</span> </a>
+            <a href="{{ route('groups.index') }}">
+              <img src="{{ asset('assets/default-theme/images/icons/group.png') }}">
+              <span>小组</span>
+            </a>
           </li>
         </ul>
       </div>
 
-
+      {{--
       <div class="sections">
         <h3>快速访问列表</h3>
         <ul>
@@ -56,29 +58,19 @@
           </li>
         </ul>
       </div>
+      --}}
 
+      <div id="foot">
+        <ul>
+          <li><a href="#" style="font-weight:normal">关于本站</a></li>
+          <li><a href="#" style="font-weight:normal">用户协议</a></li>
+          <li><a href="#" style="font-weight:normal">隐私政策</a></li>
+        </ul>
 
-      <!--  Optional Footer ->
-<div id="foot">
-
-  <ul>
-      <li> <a href="page-term.html"> About Us </a></li>
-      <li> <a href="page-setting.html"> Setting </a></li>
-      <li> <a href="page-privacy.html"> Privacy Policy </a></li>
-      <li> <a href="page-term.html"> Terms - Conditions </a></li>
-  </ul>
-
-
-  <div class="foot-content">
-      <p>© 2019 <strong>HeyCommunity</strong>. All Rights Reserved. </p>
-  </div>
-
-</div> -->
-
-
+        <div class="foot-content" style="margin-top:0">
+          <p>© {{ date('Y') }} <strong>HeyCommunity</strong>. All Rights Reserved. </p>
+        </div>
+      </div>
     </div>
-
-
   </div>
-
 </div>
