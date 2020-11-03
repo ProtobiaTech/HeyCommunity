@@ -181,49 +181,85 @@
           </div>
         </div>
 
-        <!-- profile -image -->
-        <a class="opts_account" href="#"><img src="{{ asset('assets/default-theme/images/avatars/avatar-2.jpg') }}" alt=""></a>
+        <!-- User Icon Btn -->
+        @if (\Illuminate\Support\Facades\Auth::guest())
+          <a class="opts_account"><img src="{{ asset('images/users/avatar/default.jpg') }}"></a>
 
-        <!-- profile dropdown-->
-        <div uk-dropdown="mode:click; animation:uk-animation-slide-bottom-small" style="display:none" class="dropdown-notifications rounded">
-
-          <!-- User Name / Avatar -->
-          <a href="timeline.html">
-            <div class="dropdown-user-details">
-              <div class="dropdown-user-avatar">
-                <img src="{{ asset('assets/default-theme/images/avatars/avatar-1.jpg') }}" alt="">
+          <div uk-dropdown="mode:click; animation:uk-animation-slide-bottom-small" style="display:none" class="dropdown-notifications rounded">
+            <a href="{{ route('users.login') }}">
+              <div class="dropdown-user-details">
+                <div class="dropdown-user-avatar"><img src="{{ asset('images/users/avatar/default.jpg') }}" alt=""></div>
+                <div class="dropdown-user-name">
+                  未登入
+                  <span>登入后与大家进行交流</span>
+                </div>
               </div>
-              <div class="dropdown-user-name"> supeRodv2
-                <span>诚以正心，何以至诚</span>
+            </a>
+
+            <hr class="m-0" />
+
+            <ul class="dropdown-user-menu">
+              <li><a href="{{ route('users.signup') }}"><i class="uil-user-plus"></i> 注册</a></li>
+              <li><a href="{{ route('users.login') }}"><i class="uil-user-check"></i> 登录</a></li>
+              <li>
+                <a href="#" id="night-mode" class="btn-night-mode">
+                  <i class="uil-moon"></i> 夜览模式
+                  <span class="btn-night-mode-switch"><span class="uk-switch-button"></span></span>
+                </a>
+              </li>
+            </ul>
+
+            <hr class="m-0" />
+
+            <ul class="dropdown-user-menu">
+              <li>
+                <a href="#" class="bg-secondery">
+                  <i class="uil-bolt"></i>
+                  <div> Upgrade To Premium <span> Pro features give you complete control </span></div>
+                </a>
+              </li>
+            </ul>
+          </div>
+        @else
+          <a class="opts_account"><img src="{{ asset(Auth::user()->avatar) }}"></a>
+
+          <div uk-dropdown="mode:click; animation:uk-animation-slide-bottom-small" style="display:none" class="dropdown-notifications rounded">
+            <a href="#">
+              <div class="dropdown-user-details">
+                <div class="dropdown-user-avatar"><img src="{{ asset(Auth::user()->avatar) }}" alt=""></div>
+                <div class="dropdown-user-name">
+                  {{ Auth::user()->nickname }}
+                  <span>{{ Auth::user()->bio }}</span>
+                </div>
               </div>
-            </div>
-          </a>
+            </a>
 
-          <hr class="m-0">
+            <hr class="m-0" />
 
-          <ul class="dropdown-user-menu">
-            <li><a href="page-setting.html"> <i class="uil-user"></i> 用户中心</a></li>
-            <li><a href="page-setting.html"> <i class="uil-cog"></i> 用户设置</a></li>
-            <li>
-              <a href="#" id="night-mode" class="btn-night-mode">
-                <i class="uil-moon"></i> 夜览模式
-                <span class="btn-night-mode-switch"><span class="uk-switch-button"></span></span>
-              </a>
-            </li>
-            <li><a href="form-login.html"> <i class="uil-sign-out-alt"></i> 登出</a></li>
-          </ul>
+            <ul class="dropdown-user-menu">
+              <li><a href="{{ route('home') }}"> <i class="uil-user"></i> 用户中心</a></li>
+              <li><a href="{{ route('home') }}"> <i class="uil-cog"></i> 用户设置</a></li>
+              <li>
+                <a href="#" id="night-mode" class="btn-night-mode">
+                  <i class="uil-moon"></i> 夜览模式
+                  <span class="btn-night-mode-switch"><span class="uk-switch-button"></span></span>
+                </a>
+              </li>
+              <li><a href="{{ route('users.logout') }}"> <i class="uil-sign-out-alt"></i> 登出</a></li>
+            </ul>
 
-          <hr class="m-0">
+            <hr class="m-0" />
 
-          <ul class="dropdown-user-menu">
-            <li>
-              <a href="page-setting.html" class="bg-secondery">
-                <i class="uil-bolt"></i>
-                <div> Upgrade To Premium <span> Pro features give you complete control </span></div>
-              </a>
-            </li>
-          </ul>
-        </div>
+            <ul class="dropdown-user-menu">
+              <li>
+                <a href="#" class="bg-secondery">
+                  <i class="uil-bolt"></i>
+                  <div> Upgrade To Premium <span> Pro features give you complete control </span></div>
+                </a>
+              </li>
+            </ul>
+          </div>
+        @endif
       </div>
     </div>
   </header>

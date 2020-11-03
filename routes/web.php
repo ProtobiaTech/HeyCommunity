@@ -13,9 +13,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+//
+// Base
 Route::get('/', function () {
     return redirect()->route('timelines.index');
 })->name('home');
+
+//
+// User
+Route::group(['namespace' => '\App\Http\Controllers'], function () {
+    Route::get('signup', 'UserController@loginHandler')->name('users.signup');
+    Route::post('signup', 'UserController@loginHandler')->name('users.signup-handler');
+    Route::get('login', 'UserController@loginHandler')->name('users.login');
+    Route::post('login', 'UserController@loginHandler')->name('users.login-handler');
+    Route::any('logout', 'UserController@logoutHandler')->name('users.logout');
+});
+
 
 Route::get('timelines', function () {
     $timelines = \App\Models\Timeline::paginate();

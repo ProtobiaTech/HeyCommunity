@@ -6,33 +6,51 @@
       <div class="uk-width-2-3@m fead-area">
         <div class="post-newer">
           <div class="post-new" uk-toggle="target:body; cls:post-focus;">
-            <div class="post-new-media">
-              <div class="post-new-media-user">
-                <img src="assets/images/avatars/avatar-2.jpg" alt="">
+            @if (Auth::guest())
+              <div class="post-new-media">
+                <div class="post-new-media-user">
+                  <img src="{{ asset('images/users/avatar/default.jpg') }}" alt="">
+                </div>
+                <div class="post-new-media-input">
+                  <input type="text" class="uk-input" placeholder="请先登入，有什么新鲜事与大家分享 ...">
+                </div>
               </div>
-              <div class="post-new-media-input">
-                <input type="text" class="uk-input" placeholder="有什么新鲜事与大家分享 ...">
+              <hr>
+              <div class="post-new-type">
+                <a href="#"><img src="assets/images/icons/photo.png" alt="">图片/视频</a>
+                <a href="#" class="uk-visible@s"><img src="assets/images/icons/tag-friend.png" alt="">Tag Friend</a>
+                <a href="#"><img src="assets/images/icons/reactions_wow.png" alt="">Fealing /Activity</a>
               </div>
-            </div>
-            <hr>
-            <div class="post-new-type">
-              <a href="#"><img src="assets/images/icons/photo.png" alt="">图片/视频</a>
-              <a href="#" class="uk-visible@s"><img src="assets/images/icons/tag-friend.png" alt="">Tag Friend</a>
-              <a href="#"><img src="assets/images/icons/reactions_wow.png" alt="">Fealing /Activity</a>
-            </div>
+            @else
+              <div class="post-new-media">
+                <div class="post-new-media-user">
+                  <img src="{{ Auth::user()->avatar }}" alt="">
+                </div>
+                <div class="post-new-media-input">
+                  <input type="text" class="uk-input" placeholder="有什么新鲜事与大家分享 ...">
+                </div>
+              </div>
+              <hr>
+              <div class="post-new-type">
+                <a href="#"><img src="assets/images/icons/photo.png" alt="">图片/视频</a>
+                <a href="#" class="uk-visible@s"><img src="assets/images/icons/tag-friend.png" alt="">Tag Friend</a>
+                <a href="#"><img src="assets/images/icons/reactions_wow.png" alt="">Fealing /Activity</a>
+              </div>
+            @endif
           </div>
 
+          @if (\Illuminate\Support\Facades\Auth::check())
           <div class="post-pop">
-            <div class="post-new-overyly" uk-toggle="target: body ; cls: post-focus"></div>
+            <div class="post-new-overyly" uk-toggle="target:body; cls:post-focus"></div>
             <div class="post-new uk-animation-slide-top-small">
               <div class="post-new-header">
                 <h4>分享动态</h4>
-                <span class="post-new-btn-close" uk-toggle="target:body; cls:post-focus" uk-tooltip="title:Close; pos:left;"></span>
+                <span class="post-new-btn-close" uk-toggle="target:body; cls:post-focus" uk-tooltip="title:关闭; pos:left;"></span>
               </div>
 
               <div class="post-new-media">
                 <div class="post-new-media-user">
-                  <img src="assets/images/avatars/avatar-2.jpg" alt="">
+                  <img src="{{ asset(Auth::user()->avatar) }}" alt="">
                 </div>
                 <div class="post-new-media-input">
                   <input type="text" class="uk-input" placeholder="有什么新鲜事与大家分享 ...">
@@ -50,6 +68,7 @@
                 <a href="#"> <i class="uil-check"></i> </a>
                 <a href="#"> <i class="uil-graph-bar"></i> </a>
               </div>
+
               <div class="uk-flex uk-flex-between">
                 <button class="button outline-light circle" type="button" style="border-color:#e6e6e6; border-width:1px;">公开</button>
                 <div uk-dropdown>
@@ -60,12 +79,11 @@
                     <li><a href="#">仅自己可见</a></li>
                   </ul>
                 </div>
-
                 <a href="#" class="button primary px-6">发布</a>
               </div>
             </div>
-
           </div>
+          @endif
         </div>
 
         @foreach ($timelines as $timeline)
