@@ -20,6 +20,7 @@ Route::get('/', function () {
     return redirect()->route('timelines.index');
 })->name('home');
 
+
 //
 // User
 Route::group(['namespace' => '\App\Http\Controllers'], function () {
@@ -31,15 +32,21 @@ Route::group(['namespace' => '\App\Http\Controllers'], function () {
 });
 
 
-Route::get('timelines', function () {
-    $timelines = \App\Models\Timeline::paginate();
-    return view('web.timelines.index', compact('timelines'));
-})->name('timelines.index');
+//
+// Timeline
+Route::group(['namespace' => '\App\Http\Controllers'], function () {
+    Route::resource('timelines', 'TimelineController');
+});
 
-Route::get('groups', function () {
-    return view('web.groups.index');
-})->name('groups.index');
 
-Route::get('group', function () {
-    return view('web.groups.show');
-})->name('groups.show');
+//
+// Group
+Route::group(['namespace' => '\App\Http\Controllers'], function () {
+    Route::get('groups', function () {
+        return view('web.groups.index');
+    })->name('groups.index');
+
+    Route::get('group', function () {
+        return view('web.groups.show');
+    })->name('groups.show');
+});
