@@ -14,12 +14,12 @@
   ================================================== -->
   <link rel="stylesheet" href="{{ asset('assets/default-theme/css/style.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/default-theme/css/night-mode.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/default-theme/css/framework.css') }}">
   <style>
     .night-mode .main_sidebar {
       background-color: #08090f !important;
     }
   </style>
-  <link rel="stylesheet" href="{{ asset('assets/default-theme/css/framework.css') }}">
 
   <!-- icons
   ================================================== -->
