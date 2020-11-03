@@ -7,8 +7,8 @@
 
       <!-- Logo-->
       <div id="logo">
-        <a href="{{ route('home') }}"> <img src="{{ asset('assets/images/logo.png') }}" alt=""></a>
-        <a href="{{ route('home') }}"> <img src="{{ asset('assets/images/logo-light.png') }}" class="logo-inverse" alt=""></a>
+        <a href="{{ route('home') }}"> <img src="{{ asset('assets/default-theme/images/logo.png') }}" alt=""></a>
+        <a href="{{ route('home') }}"> <img src="{{ asset('assets/default-theme/images/logo-light.png') }}" class="logo-inverse" alt=""></a>
       </div>
 
       <!-- form search-->
