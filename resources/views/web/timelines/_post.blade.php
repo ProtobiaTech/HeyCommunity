@@ -5,9 +5,10 @@
       <img src="{{ $timeline->user->avatar }}" alt="">
     </div>
     <div class="post-title">
-      <h4>{{ $timeline->user->nickname }}</h4>
-      <div>{{ $timeline->created_at->diffForHumans() }} <i class="uil-users-alt"></i></div>
+      <h4>{{ $timeline->user->nickname }}  <i class="uil-users-alt"></i></h4>
+      <div>{{ $timeline->created_at->diffForHumans() }}</div>
     </div>
+
     <div class="post-btn-action">
       <span class="icon-more uil-ellipsis-h"></span>
       <div class="mt-0 p-2" uk-dropdown="pos:bottom-right; mode:hover;" style="display:none;">
@@ -36,18 +37,18 @@
       <div>
         <img src="{{ asset('assets/default-theme/images/icons/reactions_like.png') }}" alt="">
         <img src="{{ asset('assets/default-theme/images/icons/reactions_love.png') }}" alt="">
-        <p> 13 </p>
+        <p>{{ $timeline->thumb_up_num + $timeline->favorite_num }}</p>
       </div>
-      <p> 24 评论</p>
+      <p>{{ $timeline->created_at }}</p>
     </div>
   </div>
 
   <!-- post state -->
   <div class="post-state">
-    <div class="post-state-btns"><i class="uil-thumbs-up"></i>126<span>Liked</span></div>
-    <div class="post-state-btns"><i class="uil-heart"></i>18<span>Coments</span></div>
-    <div class="post-state-btns"><i class="uil-share-alt"></i>193<span>Shared</span></div>
-    <div class="post-state-btns"><i class="uil-bookmark"></i>13<span>Saved</span></div>
+    <div class="post-state-btns"><i class="uil-thumbs-up"></i> {{ $timeline->thumb_up_num }} <span>点赞</span></div>
+    <div class="post-state-btns"><i class="uil-heart"></i> {{ $timeline->comment_num }} <span>评论</span></div>
+    <div class="post-state-btns"><i class="uil-share-alt"></i> {{ $timeline->favorite_num }} <span>收藏</span></div>
+    <div class="post-state-btns"><i class="uil-bookmark"></i> {{ $timeline->read_num }} <span>阅读</span></div>
   </div>
 
   <!-- post comments -->
