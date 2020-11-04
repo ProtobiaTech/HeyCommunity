@@ -19,6 +19,10 @@
     .night-mode .main_sidebar {
       background-color: #08090f !important;
     }
+
+    .collapse-sidebar #foot {
+      display: none;
+    }
   </style>
 
   <!-- icons
