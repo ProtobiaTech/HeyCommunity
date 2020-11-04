@@ -19,7 +19,7 @@ class TimelineCommentSeeder extends Seeder
         $userIds = \App\Models\User::pluck('id')->toArray();
         $timelineIds = \App\Models\Timeline::pluck('id')->toArray();
 
-        foreach (range(1, 500) as $index) {
+        foreach (range(1, count($timelineIds)) as $index) {
             $data[] = [
                 'floor_number'  =>  1,
 

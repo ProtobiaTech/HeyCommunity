@@ -18,7 +18,7 @@ class TimelineSeeder extends Seeder
 
         $userIds = \App\Models\User::pluck('id')->toArray();
 
-        foreach (range(1, 128) as $index) {
+        foreach (range(1, 100) as $index) {
             $userId = $faker->randomElement($userIds);
 
             $data[] = [
@@ -33,7 +33,7 @@ class TimelineSeeder extends Seeder
         \App\Models\Timeline::insert($data);
 
         $timelineImageData = [];
-        $timelineIds = range(1, 128);
+        $timelineIds = \App\Models\Timeline::pluck('id')->toArray();
 
         foreach ($timelineIds as $timelineId) {
             if (random_int(1, 10) <= 8) {
