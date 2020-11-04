@@ -45,12 +45,6 @@
   <div class="main_content">
     @yield('mainContent')
   </div>
-
-  <!-- story Pop box -->
-  @include('web.layouts._story')
-
-  <!-- Chat sidebar -->
-  @include('web.layouts._chat')
 </div>
 
 <!-- For Night mode -->
