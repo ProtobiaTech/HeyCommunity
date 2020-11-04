@@ -24,9 +24,9 @@ Route::get('/', function () {
 //
 // User
 Route::group(['namespace' => '\App\Http\Controllers'], function () {
-    Route::get('signup', 'UserController@loginHandler')->name('users.signup');
-    Route::post('signup', 'UserController@loginHandler')->name('users.signup-handler');
-    Route::get('login', 'UserController@loginHandler')->name('users.login');
+    Route::get('signup', 'UserController@signup')->name('users.signup');
+    Route::post('signup', 'UserController@signupHandler')->name('users.signup-handler');
+    Route::get('login', 'UserController@login')->name('users.login');
     Route::post('login', 'UserController@loginHandler')->name('users.login-handler');
     Route::any('logout', 'UserController@logoutHandler')->name('users.logout');
 });
