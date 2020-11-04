@@ -37,16 +37,3 @@ Route::group(['namespace' => '\App\Http\Controllers'], function () {
 Route::group(['namespace' => '\App\Http\Controllers'], function () {
     Route::resource('timelines', 'TimelineController');
 });
-
-
-//
-// Group
-Route::group(['namespace' => '\App\Http\Controllers'], function () {
-    Route::get('groups', function () {
-        return view('web.groups.index');
-    })->name('groups.index');
-
-    Route::get('group', function () {
-        return view('web.groups.show');
-    })->name('groups.show');
-});

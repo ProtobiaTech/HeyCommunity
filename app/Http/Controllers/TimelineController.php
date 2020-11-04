@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Timeline;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,7 +15,9 @@ class TimelineController extends Controller
     public function index(Request $request)
     {
         $timelines = \App\Models\Timeline::latest()->paginate();
-        return view('web.timelines.index', compact('timelines'));
+        $activeUsers = User::inRandomOrder()->limit(5)->get();
+
+        return view('web.timelines.index', compact('timelines', 'activeUsers'));
     }
 
     /**

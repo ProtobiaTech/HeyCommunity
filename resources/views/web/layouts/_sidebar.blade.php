@@ -18,12 +18,6 @@
               <span>动态</span>
             </a>
           </li>
-          <li class="{{ request()->routeIs('groups.*') ? 'active' : '' }}">
-            <a href="{{ route('groups.index') }}">
-              <img src="{{ asset('assets/default-theme/images/icons/group.png') }}">
-              <span>小组</span>
-            </a>
-          </li>
         </ul>
       </div>
 

@@ -48,9 +48,6 @@
         <a href="{{ route('timelines.index') }}" class="opts_icon uk-visible@s" uk-tooltip="title:动态; pos:bottom; offset:7;">
           <img src="{{ asset('assets/default-theme/images/icons/home.png') }}">
         </a>
-        <a href="{{ route('groups.index') }}" class="opts_icon uk-visible@s" uk-tooltip="title:小组; pos:bottom; offset:7;">
-          <img src="{{ asset('assets/default-theme/images/icons/group.png') }}">
-        </a>
 
         <!-- apps  -->
         <!--
