@@ -26,9 +26,13 @@
   <!-- post content -->
   <div class="post-description">
     <div class="fullsizeimg">
-      @foreach ($timeline->images as $image)
-        <img src="{{ asset($image->file_path) }}">
-      @endforeach
+      <div class="uk-grid-collapse uk-child-width-expand" uk-lightbox="animation:slide" uk-grid>
+        @foreach ($timeline->images as $image)
+            <a href="{{ asset($image->file_path) }}" data-caption="{{ $timeline->content }}">
+              <img src="{{ asset($image->file_path) }}">
+            </a>
+        @endforeach
+      </div>
     </div>
 
     <p>{{ $timeline->content }}</p>
@@ -46,7 +50,7 @@
   <!-- post state -->
   <div class="post-state">
     <a href="{{ route('timelines.set-thumb-up', $timeline) }}" class="post-state-btns"><i class="uil-thumbs-up"></i> {{ $timeline->thumb_up_num }} <span>点赞</span></a>
-    <div class="post-state-btns"><i class="uil-comment-alt"></i> {{ $timeline->comment_num }} <span>评论</span></div>
+    <div class="post-state-btns"><i class="uil-comments-alt"></i> {{ $timeline->comment_num }} <span>评论</span></div>
     <div class="post-state-btns"><i class="uil-heart"></i> {{ $timeline->favorite_num }} <span>收藏</span></div>
     <div class="post-state-btns"><i class="uil-eye"></i> {{ $timeline->read_num }} <span>阅读</span></div>
   </div>
@@ -66,12 +70,12 @@
               <p>{{ $comment->content }}</p>
             </div>
             <div class="uk-text-small">
-              <a href="#" class="text-dark mr-1"> <i class="uil-thumbs-up"></i>点赞</a>
-              <a href="#" class=" mr-1">回复</a>
-              <span>{{ $comment->created_at->diffForHumans() }}</span>
+              <a href="#" class="text-dark mr-1"><i class="uil-thumbs-up"></i>点赞</a>
+              &nbsp;
+              <a href="#" class="text-dark mr-1"><i class="uil-comment-edit"></i>回复</a>
+              <span class="uk-float-right">{{ $comment->created_at->diffForHumans() }}</span>
             </div>
           </div>
-          <a href="#" class="post-comment-opt"></a>
         </div>
       @endforeach
       <a href="#" class="view-more-comment"> 显示全部 {{ $timeline->comments->count() }} 个评论</a>
