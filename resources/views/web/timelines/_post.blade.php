@@ -33,7 +33,7 @@
 
     <p>{{ $timeline->content }}</p>
 
-    <div class="post-state-details">
+    <div class="post-state-details uk-hidden">
       <div>
         <img src="{{ asset('assets/default-theme/images/icons/reactions_like.png') }}" alt="">
         <img src="{{ asset('assets/default-theme/images/icons/reactions_love.png') }}" alt="">
@@ -45,10 +45,10 @@
 
   <!-- post state -->
   <div class="post-state">
-    <div class="post-state-btns"><i class="uil-thumbs-up"></i> {{ $timeline->thumb_up_num }} <span>点赞</span></div>
-    <div class="post-state-btns"><i class="uil-heart"></i> {{ $timeline->comment_num }} <span>评论</span></div>
-    <div class="post-state-btns"><i class="uil-share-alt"></i> {{ $timeline->favorite_num }} <span>收藏</span></div>
-    <div class="post-state-btns"><i class="uil-bookmark"></i> {{ $timeline->read_num }} <span>阅读</span></div>
+    <a href="{{ route('timelines.set-thumb-up', $timeline) }}" class="post-state-btns"><i class="uil-thumbs-up"></i> {{ $timeline->thumb_up_num }} <span>点赞</span></a>
+    <div class="post-state-btns"><i class="uil-comment-alt"></i> {{ $timeline->comment_num }} <span>评论</span></div>
+    <div class="post-state-btns"><i class="uil-heart"></i> {{ $timeline->favorite_num }} <span>收藏</span></div>
+    <div class="post-state-btns"><i class="uil-eye"></i> {{ $timeline->read_num }} <span>阅读</span></div>
   </div>
 
   <!-- post comments -->
@@ -77,18 +77,23 @@
       <a href="#" class="view-more-comment"> 显示全部 {{ $timeline->comments->count() }} 个评论</a>
     @endif
 
-    <div class="post-add-comment">
-      <div class="post-add-comment-avature">
-        <img src="assets/images/avatars/avatar-2.jpg" alt="">
-      </div>
-      <div class="post-add-comment-text-area">
-        <input type="text" placeholder="分享你的看法 ...">
-        <div class="icons">
-          <span class="uil-link-alt"></span>
-          <span class="uil-grin"></span>
-          <span class="uil-image"></span>
+    @if (Auth::check())
+      <div class="post-add-comment">
+        <div class="post-add-comment-avature">
+          <img src="{{ Auth::user()->avatar }}">
+        </div>
+        <div class="post-add-comment-text-area">
+          <form action="{{ route('timelines.comments.store', $timeline) }}" method="post">
+            {{ csrf_field() }}
+
+            <input type="text" name="content" placeholder="分享你的看法 ...">
+
+            <div class="icons">
+              <span class="uil-grin"></span>
+            </div>
+          </form>
         </div>
       </div>
-    </div>
+    @endif
   </div>
 </div>
