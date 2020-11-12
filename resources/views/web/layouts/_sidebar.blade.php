@@ -56,9 +56,9 @@
 
       <div id="foot">
         <ul>
-          <li><a href="#" style="font-weight:normal">关于本站</a></li>
-          <li><a href="#" style="font-weight:normal">用户协议</a></li>
-          <li><a href="#" style="font-weight:normal">隐私政策</a></li>
+          <li><a style="font-weight:normal">关于本站</a></li>
+          <li><a style="font-weight:normal">用户协议</a></li>
+          <li><a style="font-weight:normal">隐私政策</a></li>
         </ul>
 
         <div class="foot-content" style="margin-top:0">

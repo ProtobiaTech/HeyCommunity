@@ -31,7 +31,7 @@
     <div class="fullsizeimg">
       <div class="uk-grid-collapse uk-child-width-expand" uk-lightbox="animation:slide" uk-grid>
         @foreach ($timeline->images as $image)
-            <a href="{{ asset($image->file_path) }}" data-caption="{{ $timeline->content }}">
+            <a href="{{ asset($image->file_path) }}">
               <img src="{{ asset($image->file_path) }}">
             </a>
         @endforeach
