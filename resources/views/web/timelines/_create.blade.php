@@ -20,10 +20,10 @@
     <hr>
 
     <div class="post-new-type" @if (Auth::guest()) onclick="location.replace('/login');" @endif>
-      <a><img src="assets/images/icons/document.png" alt="">文字</a>
-      <a><img src="assets/images/icons/photo.png" alt="">图片</a>
-      <a><img src="assets/images/icons/movies.png" alt="">视频</a>
-      <a><img src="assets/images/icons/events.png" alt="">活动</a>
+      <a><img src={{ asset('assets/default-theme/images/icons/document.png') }} alt="">文字</a>
+      <a><img src={{ asset('assets/default-theme/images/icons/photo.png') }} alt="">图片</a>
+      <a><img src={{ asset('assets/default-theme/images/icons/movies.png') }} alt="">视频</a>
+      <a><img src={{ asset('assets/default-theme/images/icons/events.png') }} alt="">活动</a>
     </div>
   </div>
 
