@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -18,11 +20,23 @@ class UserController extends Controller
     /**
      * User login handler
      */
-    public function loginHandler()
+    public function loginHandler(Request $request)
     {
-        \Illuminate\Support\Facades\Auth::login(\App\Models\User::inRandomOrder()->first());
+        $this->validate($request, [
+            'phone'         =>  'required|string',
+            'password'      =>  'required|string'
+        ]);
 
-        return redirect()->route('home');
+        if (Auth::attempt([
+            'phone'     =>  $request->get('phone'),
+            'password'  =>  $request->get('password'),
+        ], true)) {
+            return redirect()->route('home');
+        } else {
+            return back()->withInput()->withErrors([
+                'default'   =>  '手机号或密码不正确',
+            ]);
+        }
     }
 
     /**
@@ -38,7 +52,21 @@ class UserController extends Controller
      */
     public function signupHandler(Request $request)
     {
-        dd($request->all());
+        $this->validate($request, [
+            'nickname'      =>  'required|string|min:3|max:20',
+            'phone'         =>  'required|string|size:11',
+            'password'      =>  'required|string|confirmed|min:6|max:20'
+        ]);
+
+        $user = User::create([
+            'nickname'      =>  $request->get('nickname'),
+            'phone'         =>  $request->get('phone'),
+            'password'      =>  Hash::make($request->get('password')),
+        ]);
+
+        Auth::login($user);
+
+        return redirect()->route('home');
     }
 
     /**

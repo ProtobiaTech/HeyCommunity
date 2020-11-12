@@ -13,24 +13,32 @@
 
           <div class="uk-form-group">
             <div class="uk-position-relative">
-              <input class="uk-input bg-secondary" type="phone" placeholder="手机号码">
+              <input required class="uk-input bg-secondary" type="text" name="nickname" placeholder="昵称" value="{{ old('nickname') }}">
+              <div class="text-danger">{{ $errors->first('nickname') }}</div>
             </div>
           </div>
           <div class="uk-form-group">
             <div class="uk-position-relative">
-              <input class="uk-input bg-secondary" type="password" placeholder="密码">
+              <input required class="uk-input bg-secondary" type="phone" name="phone" placeholder="手机号码" value="{{ old('phone') }}">
+              <div class="text-danger">{{ $errors->first('phone') }}</div>
             </div>
           </div>
           <div class="uk-form-group">
             <div class="uk-position-relative">
-              <input class="uk-input bg-secondary" type="password" placeholder="重复密码">
+              <input required class="uk-input bg-secondary" type="password" name="password" placeholder="密码">
+            </div>
+          </div>
+          <div class="uk-form-group">
+            <div class="uk-position-relative">
+              <input required class="uk-input bg-secondary" type="password" name="password_confirmation" placeholder="重复密码">
+              <div class="text-danger">{{ $errors->first('password') }}</div>
             </div>
           </div>
 
           <button type="submit" class="button primary large block mb-4">注册</button>
 
           <div class="text-center">
-            <span>注册即代表同意<a href="{{ route('home') }}">用户协议</a></span>
+            <span>注册即代表同意<a>用户协议</a></span>
           </div>
         </form>
       </div>
