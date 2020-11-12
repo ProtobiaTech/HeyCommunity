@@ -32,7 +32,14 @@ Route::group(['namespace' => '\App\Http\Controllers'], function () {
     Route::post('signup', 'UserController@signupHandler')->name('users.signup-handler');
     Route::get('login', 'UserController@login')->name('users.login');
     Route::post('login', 'UserController@loginHandler')->name('users.login-handler');
-    Route::any('logout', 'UserController@logoutHandler')->name('users.logout');
+
+    Route::group(['middleware' => 'auth'], function () {
+        Route::any('logout', 'UserController@logoutHandler')->name('users.logout');
+
+        Route::redirect('users/setting', '/users/settings/profile')->name('users.setting');
+        Route::get('users/settings/profile', 'UserSettingController@profile')->name('users.settings.profile');
+        Route::post('users/settings/profile', 'UserSettingController@profileUpdate')->name('users.settings.profile-update');
+    });
 });
 
 

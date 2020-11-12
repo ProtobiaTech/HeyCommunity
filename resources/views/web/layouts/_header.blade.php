@@ -205,17 +205,6 @@
                 </a>
               </li>
             </ul>
-
-            <hr class="m-0" />
-
-            <ul class="dropdown-user-menu">
-              <li>
-                <a href="#" class="bg-secondery">
-                  <i class="uil-bolt"></i>
-                  <div> Upgrade To Premium <span> Pro features give you complete control </span></div>
-                </a>
-              </li>
-            </ul>
           </div>
         @else
           <a class="opts_account"><img src="{{ asset(Auth::user()->avatar) }}"></a>
@@ -235,7 +224,7 @@
 
             <ul class="dropdown-user-menu">
               <li><a href="{{ route('home') }}"> <i class="uil-user"></i> 用户中心</a></li>
-              <li><a href="{{ route('home') }}"> <i class="uil-cog"></i> 用户设置</a></li>
+              <li><a href="{{ route('users.setting') }}"> <i class="uil-cog"></i> 用户设置</a></li>
               <li>
                 <a href="#" id="night-mode" class="btn-night-mode">
                   <i class="uil-moon"></i> 夜览模式
@@ -243,17 +232,6 @@
                 </a>
               </li>
               <li><a href="{{ route('users.logout') }}"> <i class="uil-sign-out-alt"></i> 登出</a></li>
-            </ul>
-
-            <hr class="m-0" />
-
-            <ul class="dropdown-user-menu">
-              <li>
-                <a href="#" class="bg-secondery">
-                  <i class="uil-bolt"></i>
-                  <div> Upgrade To Premium <span> Pro features give you complete control </span></div>
-                </a>
-              </li>
             </ul>
           </div>
         @endif
