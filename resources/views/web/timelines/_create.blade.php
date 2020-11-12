@@ -3,7 +3,7 @@
     <div class="post-new-media">
       <div class="post-new-media-user">
         @if (Auth::check())
-          <img src="{{ Auth::user()->avatar }}" alt="">
+          <img src="{{ asset(Auth::user()->avatar) }}" alt="">
         @else
           <img src="{{ asset('images/users/avatar/default.jpg') }}" alt="">
         @endif

@@ -223,8 +223,8 @@
             <hr class="m-0" />
 
             <ul class="dropdown-user-menu">
-              <li><a href="{{ route('home') }}"> <i class="uil-user"></i> 用户中心</a></li>
-              <li><a href="{{ route('users.setting') }}"> <i class="uil-cog"></i> 用户设置</a></li>
+              <li><a href="{{ route('users.home', Auth::id()) }}"> <i class="uil-user"></i> 我的主页</a></li>
+              <li><a href="{{ route('users.setting') }}"> <i class="uil-cog"></i> 帐户设置</a></li>
               <li>
                 <a href="#" id="night-mode" class="btn-night-mode">
                   <i class="uil-moon"></i> 夜览模式

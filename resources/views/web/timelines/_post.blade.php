@@ -2,7 +2,7 @@
   <!-- post header -->
   <div class="post-heading">
     <div class="post-avature">
-      <img src="{{ $timeline->user->avatar }}" alt="">
+      <img src="{{ asset($timeline->user->avatar) }}" alt="">
     </div>
     <div class="post-title">
       <h4>{{ $timeline->user->nickname }}</h4>
@@ -57,7 +57,7 @@
       @foreach($timeline->comments as $comment)
         <div class="post-comments-single">
           <div class="post-comment-avatar">
-            <img src="{{ $comment->user->avatar }}" alt="{{ $comment->user->nickname }}">
+            <img src="{{ asset($comment->user->avatar) }}" alt="{{ $comment->user->nickname }}">
           </div>
           <div class="post-comment-text">
             <div class="post-comment-text-inner">
@@ -83,7 +83,7 @@
     @if (Auth::check())
       <div class="post-add-comment">
         <div class="post-add-comment-avature">
-          <img src="{{ Auth::user()->avatar }}">
+          <img src="{{ asset(Auth::user()->avatar) }}">
         </div>
         <div class="post-add-comment-text-area">
           <form action="{{ route('timelines.comments.store', $timeline) }}" method="post">

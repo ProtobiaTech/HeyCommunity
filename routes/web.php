@@ -33,9 +33,14 @@ Route::group(['namespace' => '\App\Http\Controllers'], function () {
     Route::get('login', 'UserController@login')->name('users.login');
     Route::post('login', 'UserController@loginHandler')->name('users.login-handler');
 
+    // 用户主页
+    Route::redirect('users/{user}', '/users/{user}/timeline')->name('users.home')->where('user', '[0-9]+');
+    Route::get('users/{user}/timeline', 'UserHomeController@timeline')->name('users.home.timeline')->where('user', '[0-9]+');
+
     Route::group(['middleware' => 'auth'], function () {
         Route::any('logout', 'UserController@logoutHandler')->name('users.logout');
 
+        // 用户设置
         Route::redirect('users/setting', '/users/settings/profile')->name('users.setting');
         Route::get('users/settings/profile', 'UserSettingController@profile')->name('users.settings.profile');
         Route::post('users/settings/profile', 'UserSettingController@profileUpdate')->name('users.settings.profile-update');
