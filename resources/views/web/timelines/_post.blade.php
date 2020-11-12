@@ -43,8 +43,8 @@
   <div class="post-state">
     <a href="{{ route('timelines.set-thumb-up', $timeline) }}" class="post-state-btns"><i class="uil-thumbs-up"></i> {{ $timeline->thumb_up_num ?: '' }} <span>点赞</span></a>
     <div class="post-state-btns"><i class="uil-comments-alt"></i> {{ $timeline->comment_num ?: '' }} <span>评论</span></div>
-    <div class="post-state-btns"><i class="uil-heart"></i> {{ $timeline->favorite_num ?: '' }} <span>收藏</span></div>
-    <div class="post-state-btns"><i class="uil-eye"></i> {{ $timeline->read_num }} <span>阅读</span></div>
+    <div class="text-muted post-state-btns" uk-tooltip="title:收藏不可用; pos:top; offset:7;"><i class="uil-heart"></i> {{ $timeline->favorite_num ?: '' }} <span>收藏</span></div>
+    <div class="text-muted post-state-btns" uk-tooltip="title:阅读不可用; pos:top; offset:7;"><i class="uil-eye"></i> {{ $timeline->read_num }} <span>阅读</span></div>
   </div>
 
   <!-- post comments -->
