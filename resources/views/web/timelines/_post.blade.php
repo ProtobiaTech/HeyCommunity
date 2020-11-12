@@ -2,10 +2,12 @@
   <!-- post header -->
   <div class="post-heading">
     <div class="post-avature">
-      <img src="{{ asset($timeline->user->avatar) }}" alt="">
+      <a href="{{ route('users.home', $timeline->user_id) }}">
+        <img src="{{ asset($timeline->user->avatar) }}" alt="">
+      </a>
     </div>
     <div class="post-title">
-      <h4>{{ $timeline->user->nickname }}</h4>
+      <h4><a style="color:#545454;" href="{{ route('users.home', $timeline->user_id) }}">{{ $timeline->user->nickname }}</a></h4>
       <div>{{ $timeline->created_at->diffForHumans() }}</div>
     </div>
 
@@ -57,11 +59,13 @@
       @foreach($timeline->comments as $comment)
         <div class="post-comments-single">
           <div class="post-comment-avatar">
-            <img src="{{ asset($comment->user->avatar) }}" alt="{{ $comment->user->nickname }}">
+            <a href="{{ route('users.home', $comment->user_id) }}">
+              <img src="{{ asset($comment->user->avatar) }}" alt="{{ $comment->user->nickname }}">
+            </a>
           </div>
           <div class="post-comment-text">
             <div class="post-comment-text-inner">
-              <h6>{{ $comment->user->nickname }}</h6>
+              <h6><a style="color:#545454;" href="{{ route('users.home', $comment->user_id) }}">{{ $comment->user->nickname }}</a></h6>
               <p>{{ $comment->content }}</p>
             </div>
             <div class="uk-text-small">

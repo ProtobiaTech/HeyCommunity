@@ -27,27 +27,13 @@
         <div>
           <div class="list-items">
             <div class="list-item-media">
-              <img class="rounded-circle" src="{{ $user->avatar }}" alt="{{ $user->nickname }}">
+              <a href="{{ route('users.home', $user) }}">
+                <img class="rounded-circle" src="{{ $user->avatar }}" alt="{{ $user->nickname }}">
+              </a>
             </div>
             <div class="list-item-content">
-              <a href="#"><h5>{{ $user->nickname }}</h5></a>
+              <a href="{{ route('users.home', $user) }}"><h5>{{ $user->nickname }}</h5></a>
               <p>{{ $user->bio }}</p>
-            </div>
-            <div class="uk-width-auto">
-              <span class="btn-option"><i class="icon-feather-more-horizontal"></i></span>
-              <div class="dropdown-option-nav" uk-dropdown="pos:bottom-right; mode:hover; animation:uk-animation-slide-bottom-small">
-                <ul>
-                  <li>
-                    <span> <i class="uil-bell"></i> Joined </span>
-                  </li>
-                  <li>
-                    <span> <i class="uil-bookmark"></i> Add Bookmark </span>
-                  </li>
-                  <li>
-                    <span> <i class="uil-share-alt"></i> Share Your Friends </span>
-                  </li>
-                </ul>
-              </div>
             </div>
           </div>
         </div>
