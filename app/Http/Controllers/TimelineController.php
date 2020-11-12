@@ -48,9 +48,17 @@ class TimelineController extends Controller
             'user_id'   =>  Auth::id(),
             'content'   =>  $request->get('content'),
         ]);
-        $timeline->save();
 
-        return redirect()->route('timelines.index');
+
+        if ($timeline->save()) {
+            setUkNotice('分享动态成功', 'success');
+
+            return redirect()->route('timelines.index');
+        } else {
+            setUkNotice('分享动态失败', 'danger');
+
+            return back();
+        }
     }
 
     /**
@@ -67,6 +75,8 @@ class TimelineController extends Controller
 
         if ($thumb) {
             $timeline->increment('thumb_up_num');
+
+            setUkNotice('点赞成功', 'success');
         }
 
         return redirect()->back();
@@ -90,7 +100,11 @@ class TimelineController extends Controller
             'content'           =>  $request->get('content'),
         ]);
 
-        if ($comment) $timeline->increment('comment_num');
+        if ($comment) {
+            $timeline->increment('comment_num');
+
+            setUkNotice('评论成功', 'success');
+        }
 
         return redirect()->back();
     }

@@ -94,5 +94,8 @@
 <script src="{{ asset('assets/default-theme/js/simplebar.js') }}"></script>
 <script src="{{ asset('assets/default-theme/js/main.js') }}"></script>
 
+<!-- uk notification -->
+@include('web.layouts._uk-notice')
+
 </body>
 </html>

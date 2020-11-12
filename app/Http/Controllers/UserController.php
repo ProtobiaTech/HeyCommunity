@@ -75,6 +75,7 @@ class UserController extends Controller
     public function logoutHandler()
     {
         Auth::logout();
+        setUkNotice('登出成功 ~', 'success');
 
         return redirect()->back();
     }

@@ -223,3 +223,22 @@ function dateForHuman($date, $overDayNum = 7, $format = 'Y-m-d H:i:s') {
 
     return $date->format($format);
 }
+
+/**
+ * Set UiKit Notice
+ */
+function setUkNotice($message, $status = 'default', $timeout = 3000, $position = 'top-right') {
+    session()->flash('uk-notice', [
+        'message'   =>  $message,
+        'status'    =>  $status,
+        'timeout'   =>  $timeout,
+        'position'  =>  $position,
+    ]);
+}
+
+/**
+ * Get UiKit Notice
+ */
+function getUkNotice() {
+    return session('uk-notice');
+}
