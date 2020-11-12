@@ -12,9 +12,9 @@
 
       <!-- form search-->
       <div class="head_search">
-        <form>
+        <form method="get">
           <div class="head_search_cont">
-            <input disabled value="" type="text" class="form-control" placeholder="搜索不可用" autocomplete="off">
+            <input name="q" type="text" class="form-control" placeholder="输入关键词搜索相关动态" value="{{ request()->get('q') }}" autocomplete="off">
             <i class="s_icon uil-search-alt"></i>
           </div>
 
