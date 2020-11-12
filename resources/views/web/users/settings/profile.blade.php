@@ -18,7 +18,7 @@
           <hr class="m-0">
 
           <form method="post">
-            <div class="uk-child-width-1-2@s uk-grid-small p-4" uk-grid>
+            <div class="uk-child-width-1-2@s uk-grid-small px-4 pt-4" uk-grid>
               {{ csrf_field() }}
 
               <div>
@@ -27,10 +27,21 @@
                 <div class="text-danger">{{ $errors->first('nickname') }}</div>
               </div>
               <div>
+                <h5 class="uk-text-bold mb-2">性别</h5>
+                <select name="gender" class="uk-select">
+                  <option value="0" {{ old('gender', $user->gender) == 0 ? 'selected' : '' }}>未设定</option>
+                  <option value="1" {{ old('gender', $user->gender) == 1 ? 'selected' : '' }}>男</option>
+                  <option value="2" {{ old('gender', $user->gender) == 2 ? 'selected' : '' }}>女</option>
+                </select>
+                <div class="text-danger">{{ $errors->first('gender') }}</div>
+              </div>
+              {{--
+              <div>
                 <h5 class="uk-text-bold mb-2">真实姓名</h5>
                 <input name="realname" type="text" class="uk-input" placeholder="你的真实姓名" value="{{ old('realname', $user->realname) }}">
                 <div class="text-danger">{{ $errors->first('realname') }}</div>
               </div>
+              --}}
 
               <div>
                 <h5 class="uk-text-bold mb-2">手机号码 <small uk-tooltip="title:暂不支持更换手机号码;"><a>(更换)</a></small></h5>
@@ -41,6 +52,14 @@
                 <h5 class="uk-text-bold mb-2">电子邮箱</h5>
                 <input name="email" type="email" class="uk-input" placeholder="hi@hey-community.com" value="{{ old('email', $user->email) }}">
                 <div class="text-danger">{{ $errors->first('email') }}</div>
+              </div>
+            </div>
+
+            <div class="uk-child-width-1-1@s uk-grid-small px-4" uk-grid>
+              <div>
+                <h5 class="uk-text-bold mb-2">一句话介绍</h5>
+                <input name="bio" type="string" class="uk-input" placeholder="用一句话介绍你自己" value="{{ old('bio', $user->bio) }}">
+                <div class="text-danger">{{ $errors->first('bio') }}</div>
               </div>
             </div>
 

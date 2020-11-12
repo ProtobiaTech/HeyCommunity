@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 class UserSettingController extends Controller
 {
     /**
-     * User setting profile page
+     * User profile setting page
      */
     public function profile()
     {
@@ -18,21 +18,24 @@ class UserSettingController extends Controller
     }
 
     /**
-     *
+     * User profile update
      */
     public function profileUpdate(Request $request)
     {
         $this->validate($request, [
             'nickname'      =>  'required|string|min:3|max:20',
-            'realname'      =>  'nullable|string|min:2|max:8',
+            // 'realname'      =>  'nullable|string|min:2|max:8',
+            'gender'        =>  'required|integer',
             'email'         =>  'nullable|email',
+            'bio'           =>  'nullable|string|max:50',
         ]);
 
         $user = Auth::user();
         $user->update([
             'nickname'      =>  $request->get('nickname'),
-            'realname'      =>  $request->get('realname'),
+            'gender'        =>  $request->get('gender'),
             'email'         =>  $request->get('email'),
+            'bio'           =>  $request->get('bio'),
         ]);
 
         return back();
