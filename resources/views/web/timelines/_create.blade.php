@@ -39,25 +39,17 @@
             <span class="post-new-btn-close" uk-toggle="target:body; cls:post-focus" uk-tooltip="title:关闭; pos:left;"></span>
           </div>
 
-          <div class="post-new-media">
+          <div class="post-new-media" style="margin-bottom:10px;">
             <div class="post-new-media-user">
               <img src="{{ asset(Auth::user()->avatar) }}" alt="">
             </div>
-            <div class="post-new-media-input">
-              <input type="text" name="content" class="uk-input" placeholder="有什么新鲜事与大家分享 ...">
+            <div class="post-new-media-input" style="margin-left:15px;">
+              <textarea class="uk-textarea" name="content" rows="4" placeholder="有什么新鲜事与大家分享 ..."></textarea>
             </div>
           </div>
           <div class="post-new-tab-nav">
-            <a href="#" uk-tooltip="title:Close"> <i class="uil-image"></i> </a>
-            <a href="#"> <i class="uil-user-plus"></i> </a>
-            <a href="#"> <i class="uil-video"></i> </a>
-            <a href="#"> <i class="uil-record-audio"></i> </a>
-            <a href="#"> <i class="uil-file-alt"></i> </a>
-            <a href="#"> <i class="uil-emoji"></i> </a>
-            <a href="#"> <i class="uil-gift"></i> </a>
-            <a href="#"> <i class="uil-shopping-basket"></i> </a>
-            <a href="#"> <i class="uil-check"></i> </a>
-            <a href="#"> <i class="uil-graph-bar"></i> </a>
+            <a uk-tooltip="title:图片; offset:4;"> <i class="uil-image"></i> </a>
+            <a uk-tooltip="title:视频; offset:4;"> <i class="uil-youtube-alt"></i> </a>
           </div>
 
           <div class="uk-flex uk-flex-between">

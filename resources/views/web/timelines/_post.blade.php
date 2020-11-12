@@ -36,7 +36,7 @@
       </div>
     </div>
 
-    <p>{{ $timeline->content }}</p>
+    <p>{!! nl2br($timeline->content) !!}</p>
   </div>
 
   <!-- post state -->
