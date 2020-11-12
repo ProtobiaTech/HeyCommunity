@@ -28,4 +28,15 @@ class Timeline extends BaseModel
     {
         return $this->morphMany('App\Models\Common\Comment', 'entity')->latest();
     }
+
+    /**
+     * Related Comment
+     */
+    public function hot5Comments()
+    {
+        return $this->morphMany('App\Models\Common\Comment', 'entity')
+            ->orderByDesc('thumb_up_num', 'comment_num')
+            ->limit(5)
+            ->latest();
+    }
 }
