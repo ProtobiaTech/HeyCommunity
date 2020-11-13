@@ -74,31 +74,35 @@
   @endif
 </div>
 
+<!-- form style -->
+<style type="text/css" rel="stylesheet">
+  #section-timeline-create-card .timeline-images {
+    margin-top: -5px;
+    font-size: 0;
+  }
+  #section-timeline-create-card .timeline-images .item-image {
+    position: relative;
+    display: inline-block;
+    margin-top: 5px;
+    margin-right: 5px;
+  }
+  #section-timeline-create-card .timeline-images .item-image img {
+    display: block;
+    width: 80px;
+    height: 60px;
+  }
+  #section-timeline-create-card .timeline-images .item-image .handler-delete {
+    position: absolute;
+    right: 0;
+    background-color: red;
+    font-size: 12px;
+    line-height: 2em;
+    width: 26px;
+    text-align: center;
+    border-bottom-left-radius: 4px;
+  }
+</style>
 @section('footerJavascript')
-  <style>
-    .timeline-images {
-    }
-    .timeline-images .item-image {
-      position: relative;
-      display: inline-block;
-    }
-    .timeline-images .item-image img {
-      display: block;
-      width: 80px;
-      height: 60px;
-    }
-    .timeline-images .item-image .handler-delete {
-      position: absolute;
-      right: 0;
-      background-color: red;
-      font-size: 12px;
-      line-height: 2em;
-      width: 26px;
-      text-align: center;
-      border-bottom-left-radius: 4px;
-    }
-  </style>
-
   <script>
     var timelineFormEl = $('#section-timeline-create-card form');
     var timelineFormImageAreaEl = $(timelineFormEl).find('.timeline-images');
@@ -163,8 +167,10 @@
     function addTimelineImage(image) {
       // display the image
       var divEl = $(timelineFormEl).find('.item-image.uk-hidden').clone();
+      var aEl = divEl.find('a')
       var imgEl = divEl.find('img')
 
+      aEl.attr('href', image.file_path);
       imgEl.attr('src', image.file_path);
       divEl.appendTo(timelineFormImageAreaEl);
       divEl.attr('data-id', image.id);
