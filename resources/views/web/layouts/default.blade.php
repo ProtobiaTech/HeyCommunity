@@ -38,17 +38,18 @@
 
 <!-- Wrapper -->
 <div id="wrapper">
-
   <!-- sidebar -->
-  @include('web.layouts._sidebar')
+  @section('mainSidebar')
+    @include('web.layouts._sidebar')
+  @show
 
   <!-- header -->
-  @include('web.layouts._header')
+  @section('mainHeader')
+    @include('web.layouts._header')
+  @show
 
   <!-- contents -->
-  <div class="main_content">
-    @yield('mainContent')
-  </div>
+  @yield('mainContent')
 </div>
 
 <!-- For Night mode -->

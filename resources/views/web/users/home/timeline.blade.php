@@ -1,7 +1,9 @@
-@extends('web.users.layout')
+@extends('web.layouts.default')
+
+@section('mainSidebar', '')
 
 @section('mainContent')
-  <div class="main_content">
+  <div class="main_content" style="margin-left:0;">
     <div class="main_content_inner pt-0">
       <div class="profile">
         <div class="profile-cover">

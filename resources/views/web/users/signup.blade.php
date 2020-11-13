@@ -1,4 +1,6 @@
-@extends('web.users.layout')
+@extends('web.layouts.default')
+
+@section('mainSidebar', '')
 
 @section('mainContent')
   <div uk-height-viewport="expand: true" class="uk-flex uk-flex-middle">

@@ -1,4 +1,6 @@
-@extends('web.users.layout')
+@extends('web.layouts.default')
+
+@section('mainSidebar', '')
 
 @section('mainContent')
 <div class="main_content">
