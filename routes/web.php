@@ -28,10 +28,12 @@ Route::get('log-in', function () {
 //
 // User
 Route::group(['namespace' => '\App\Http\Controllers'], function () {
-    Route::get('signup', 'UserController@signup')->name('users.signup');
-    Route::post('signup', 'UserController@signupHandler')->name('users.signup-handler');
-    Route::get('login', 'UserController@login')->name('users.login');
-    Route::post('login', 'UserController@loginHandler')->name('users.login-handler');
+    Route::group(['middleware' => 'guest'], function () {
+        Route::get('signup', 'UserController@signup')->name('users.signup');
+        Route::post('signup', 'UserController@signupHandler')->name('users.signup-handler');
+        Route::get('login', 'UserController@login')->name('users.login');
+        Route::post('login', 'UserController@loginHandler')->name('users.login-handler');
+    });
 
     // 用户主页
     Route::redirect('users/{user}', '/users/{user}/timeline')->name('users.home')->where('user', '[0-9]+');
