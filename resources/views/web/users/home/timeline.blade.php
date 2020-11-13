@@ -18,7 +18,7 @@
 
         <div class="profile-details">
           <div class="profile-image">
-            <img src={{ asset($user->avatar) }} alt="{{ $user->nickname }}">
+            <img src={{ asset($user->avatar) }} alt="{{ $user->nickname }}" style="height:auto;">
 
             @if ($user->id === Auth::id())
               <a href="#" class="text-dark"></a>
