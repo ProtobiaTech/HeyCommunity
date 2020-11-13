@@ -23,7 +23,7 @@
       <a><img src={{ asset('assets/default-theme/images/icons/document.png') }} alt="">文字</a>
       <a><img src={{ asset('assets/default-theme/images/icons/photo.png') }} alt="">图片</a>
       <a><img src={{ asset('assets/default-theme/images/icons/movies.png') }} alt="">视频</a>
-      <a><img src={{ asset('assets/default-theme/images/icons/events.png') }} alt="">活动</a>
+      <a><img src={{ asset('assets/default-theme/images/icons/info.png') }} alt="">新鲜事</a>
     </div>
   </div>
 
