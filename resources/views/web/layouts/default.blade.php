@@ -9,6 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="HeyCommunity">
   <link rel="icon" href="{{ asset('favicon.png') }}">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 
   <!-- CSS
   ================================================== -->
@@ -97,6 +98,9 @@
 
 <!-- uk notification -->
 @include('web.layouts._uk-notice')
+
+<!-- footer Javascript -->
+@yield('footerJavascript')
 
 </body>
 </html>

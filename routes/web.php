@@ -53,6 +53,8 @@ Route::group(['namespace' => '\App\Http\Controllers'], function () {
 //
 // Timeline
 Route::group(['namespace' => '\App\Http\Controllers'], function () {
+    Route::post('timelines/upload-image', 'TimelineController@uploadImage')->name('timelines.upload-image');
+
     Route::any('timelines/{timeline}/set-thumb-up', 'TimelineController@setThumbUp')
         ->where('timeline', '[0-9]+')->name('timelines.set-thumb-up');
     Route::any('timelines/{timeline}/cancel-thumb-up', 'TimelineController@cancelThumbUp')

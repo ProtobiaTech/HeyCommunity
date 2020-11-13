@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Common\Comment;
 use App\Models\Common\Thumb;
 use App\Models\Timeline;
+use App\Models\TimelineImage;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class TimelineController extends Controller
 {
@@ -41,6 +43,8 @@ class TimelineController extends Controller
     {
         $this->validate($request, [
             'content'       =>  'required|string',
+            'imageIds'      =>  'nullable|array',
+            'imageIds.*'    =>  'integer',
         ]);
 
         $timeline = new Timeline();
@@ -49,8 +53,9 @@ class TimelineController extends Controller
             'content'   =>  $request->get('content'),
         ]);
 
-
         if ($timeline->save()) {
+            TimelineImage::whereIn('id', $request->get('imageIds'))->update(['timeline_id' => $timeline->id]);
+
             setUkNotice('分享动态成功', 'success');
 
             return redirect()->route('timelines.index');
@@ -59,6 +64,27 @@ class TimelineController extends Controller
 
             return back();
         }
+    }
+
+    /**
+     * Upload image
+     */
+    public function uploadImage(Request $request)
+    {
+        $this->validate($request, [
+            'image'     =>  'required|image',
+        ]);
+
+        $filePath = Storage::putFile('uploads/timlines', $request->image);
+
+        $timelineImage = TimelineImage::create([
+            'user_id'       =>  Auth::id(),
+            'file_path'     =>  $filePath,
+            'image_width'   =>  getimagesize($request->image)[0],
+            'image_height'  =>  getimagesize($request->image)[1],
+        ]);
+
+        return response()->json($timelineImage);
     }
 
     /**

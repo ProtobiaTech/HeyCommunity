@@ -28,8 +28,8 @@
   </div>
 
   @if (Auth::check())
-    <div class="post-pop">
-      <form method="post" action="{{ route('timelines.store') }}">
+    <div id="section-timeline-create-card" class="post-pop">
+      <form method="post" action="{{ route('timelines.store') }}" onsubmit="submitTimelineForm(event)">
         {{ csrf_field() }}
 
         <div class="post-new-overyly" uk-toggle="target:body; cls:post-focus"></div>
@@ -44,13 +44,24 @@
               <img src="{{ asset(Auth::user()->avatar) }}" alt="">
             </div>
             <div class="post-new-media-input">
-              <textarea class="uk-textarea" name="content" rows="4" placeholder="有什么新鲜事与大家分享 ..."
-                        style="resize:none; border:0;"></textarea>
+              <textarea class="uk-textarea" name="content" rows="4" placeholder="有什么新鲜事与大家分享 ..." style="resize:none; border:0;"></textarea>
+              <input type="file" name="input-image" accept="image/*" multiple style="display:none;" onchange="uploadTimelineImage(event)">
             </div>
           </div>
+
+          <!-- timeline images -->
+          <div class="timeline-images" uk-lightbox="animation:slide">
+            <div class="item-image uk-hidden">
+              <div class="handler-delete" onclick="deleteTimelineImage(event)"><i class="text-white uil-trash-alt"></i></div>
+              <a href=""><img src=""></a>
+            </div>
+          </div>
+
+          <!-- timeline video -->
+
           <div class="post-new-tab-nav">
-            <a uk-tooltip="title:图片; offset:4;"> <i class="uil-image"></i> </a>
-            <a uk-tooltip="title:视频; offset:4;"> <i class="uil-youtube-alt"></i> </a>
+            <a uk-tooltip="title:图片; offset:4;" onclick="$('#section-timeline-create-card input[name=input-image]').click();"><i class="uil-image"></i></a>
+            <a uk-tooltip="title:视频; offset:4;"><i class="uil-youtube-alt"></i></a>
           </div>
 
           <div class="uk-flex uk-flex-between">
@@ -62,3 +73,119 @@
     </div>
   @endif
 </div>
+
+@section('footerJavascript')
+  <style>
+    .timeline-images {
+    }
+    .timeline-images .item-image {
+      position: relative;
+      display: inline-block;
+    }
+    .timeline-images .item-image img {
+      display: block;
+      width: 80px;
+      height: 60px;
+    }
+    .timeline-images .item-image .handler-delete {
+      position: absolute;
+      right: 0;
+      background-color: red;
+      font-size: 12px;
+      line-height: 2em;
+      width: 26px;
+      text-align: center;
+      border-bottom-left-radius: 4px;
+    }
+  </style>
+
+  <script>
+    var timelineFormEl = $('#section-timeline-create-card form');
+    var timelineFormImageAreaEl = $(timelineFormEl).find('.timeline-images');
+    var timelineFormInputImageIds = [];
+
+    /**
+     * 提交动态表单
+     */
+    function submitTimelineForm(event) {
+      var formData = new FormData(event.target);
+
+      // check content length
+      if (formData.get('content').length < 3) {
+        alert('说点什么吧，不少于 3 个字')
+        event.preventDefault();
+      }
+
+      // add imageIds input
+      timelineFormInputImageIds.forEach(function(imageId) {
+        var inputEl = document.createElement('input');
+        inputEl.name = 'imageIds[' + imageId + ']';
+        inputEl.type = 'hidden';
+        inputEl.value = imageId;
+        event.target.appendChild(inputEl);
+      });
+    }
+
+    /**
+     * 上传动态图片
+     */
+    function uploadTimelineImage(event) {
+      var formData = new FormData();
+      formData.append('_token', $('meta[name=csrf-token]').attr('content'));
+
+      for (var file of event.target.files) {
+        formData.append('image', file);
+
+        $.ajax({
+          url: "{{ route('timelines.upload-image') }}",
+          method: 'POST',
+          enctype: 'multipart/form-data',
+          cache:false,
+          contentType: false,
+          processData:false,
+          data: formData,
+          success: function(result) {
+            console.log('upload image success', result);
+            addTimelineImage(result);
+          },
+          error: function(xhr, status, error) {
+            console.log('upload image error', xhr, status, error);
+          }
+        });
+      }
+
+      $(timelineFormEl).find('input[name=input-image]').val(null);
+    }
+
+    /**
+     * 添加动态图片
+     */
+    function addTimelineImage(image) {
+      // display the image
+      var divEl = $(timelineFormEl).find('.item-image.uk-hidden').clone();
+      var imgEl = divEl.find('img')
+
+      imgEl.attr('src', image.file_path);
+      divEl.appendTo(timelineFormImageAreaEl);
+      divEl.attr('data-id', image.id);
+      divEl.removeClass('uk-hidden');
+
+      timelineFormInputImageIds.push(image.id);
+    }
+
+    /**
+     * 删除动态图片
+     */
+    function deleteTimelineImage(event) {
+      this.event.preventDefault();
+
+      var itemImage = $(event.target).parents('.item-image');
+      var imageId = itemImage.attr('data-id');
+      itemImage.remove();
+
+      timelineFormInputImageIds = timelineFormInputImageIds.filter(function(item) {
+        return item != imageId;
+      });
+    }
+  </script>
+@endsection
