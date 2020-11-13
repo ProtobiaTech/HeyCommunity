@@ -69,9 +69,9 @@
               <p>{{ $comment->content }}</p>
             </div>
             <div class="uk-text-small">
-              <a href="#" class="text-dark mr-1"><i class="uil-thumbs-up"></i>点赞</a>
+              <a class="text-dark mr-1" uk-tooltip="title:不可用; offset:4;"><i class="uil-thumbs-up"></i>点赞</a>
               &nbsp;
-              <a href="#" class="text-dark mr-1"><i class="uil-comment-edit"></i>回复</a>
+              <a class="text-dark mr-1" uk-tooltip="title:不可用; offset:4;"><i class="uil-comment-edit"></i>回复</a>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <span class="uk-float-right">{{ $comment->created_at->diffForHumans() }}</span>
             </div>
