@@ -1,7 +1,7 @@
 @extends('web.layouts.default')
 
 @section('mainContent')
-  <div class="main_content">
+  <div id="module-timeline" class="main_content">
     <div class="main_content_inner">
       <div class="uk-grid-large" uk-grid>
         <div class="uk-width-2-3@m fead-area">

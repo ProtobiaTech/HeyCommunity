@@ -1,0 +1,5 @@
+#module-timeline .item-timeline .timeline-content,
+#module-timeline .item-timeline .comment-content {
+  word-break: break-all;
+}
+
