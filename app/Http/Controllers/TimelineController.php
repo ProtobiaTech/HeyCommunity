@@ -54,7 +54,9 @@ class TimelineController extends Controller
         ]);
 
         if ($timeline->save()) {
-            TimelineImage::whereIn('id', $request->get('imageIds'))->update(['timeline_id' => $timeline->id]);
+            if ($request->get('imageIds')) {
+                TimelineImage::whereIn('id', $request->get('imageIds'))->update(['timeline_id' => $timeline->id]);
+            }
 
             setUkNotice('分享动态成功', 'success');
 
