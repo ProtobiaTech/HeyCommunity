@@ -98,6 +98,8 @@
 <script src="{{ asset('assets/default-theme/js/simplebar.js') }}"></script>
 <script src="{{ asset('assets/default-theme/js/main.js') }}"></script>
 
+<script src="{{ asset('js/app.js') }}"></script>
+
 <!-- uk notification -->
 @include('web.layouts._uk-notice')
 
