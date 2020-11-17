@@ -90,27 +90,6 @@ class TimelineController extends Controller
     }
 
     /**
-     * Set thumb up for timeline
-     */
-    public function setThumbUp(Request $request, Timeline $timeline)
-    {
-        $thumb = Thumb::create([
-            'user_id'           =>  Auth::id(),
-            'entity_type'       =>  get_class($timeline),
-            'entity_id'         =>  $timeline->id,
-            'type'              =>  'thumb_up',
-        ]);
-
-        if ($thumb) {
-            $timeline->increment('thumb_up_num');
-
-            setUkNotice('点赞成功', 'success');
-        }
-
-        return redirect()->back();
-    }
-
-    /**
      * Comment timeline
      */
     public function commentStore(Request $request, Timeline $timeline)

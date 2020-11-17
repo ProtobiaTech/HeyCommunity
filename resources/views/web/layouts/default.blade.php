@@ -98,6 +98,19 @@
 <script src="{{ asset('assets/default-theme/js/simplebar.js') }}"></script>
 <script src="{{ asset('assets/default-theme/js/main.js') }}"></script>
 
+<script>
+  let token = document.head.querySelector('meta[name="csrf-token"]');
+
+  if (token) {
+    // window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+
+    $(document).ready(function() {
+      $.ajaxSetup({headers: {'X-CSRF-TOKEN': token.content}});
+    });
+  } else {
+    console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+  }
+</script>
 <script src="{{ asset('js/app.js') }}"></script>
 
 <!-- uk notification -->

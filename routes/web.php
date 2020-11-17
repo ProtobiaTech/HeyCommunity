@@ -55,13 +55,14 @@ Route::group(['namespace' => '\App\Http\Controllers'], function () {
 Route::group(['namespace' => '\App\Http\Controllers'], function () {
     Route::post('timelines/upload-image', 'TimelineController@uploadImage')->name('timelines.upload-image');
 
-    Route::any('timelines/{timeline}/set-thumb-up', 'TimelineController@setThumbUp')
-        ->where('timeline', '[0-9]+')->name('timelines.set-thumb-up');
-    Route::any('timelines/{timeline}/cancel-thumb-up', 'TimelineController@cancelThumbUp')
-        ->where('timeline', '[0-9]+')->name('timelines.cancel-thumb-up');
-
     Route::any('timelines/{timeline}/comments', 'TimelineController@commentStore')
         ->where('timeline', '[0-9]+')->name('timelines.comments.store');
 
     Route::resource('timelines', 'TimelineController');
+});
+
+//
+// Thumb
+Route::group(['namespace' => '\App\Http\Controllers', 'middleware' => ['auth']], function () {
+    Route::post('thumbs/handler', 'ThumbController@handler')->name('thumbs.handler');
 });
