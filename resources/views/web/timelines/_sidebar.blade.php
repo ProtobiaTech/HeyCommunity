@@ -1,4 +1,4 @@
-<div class="uk-width-expand">
+<div class="uk-width-expand uk-visible@m">
   <div>
     <h3 class="mb-2">欢迎来到 {{ config('app.name') }}</h3>
   </div>

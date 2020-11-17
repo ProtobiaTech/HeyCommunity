@@ -3,7 +3,7 @@
 
   <!-- sidebar header -->
   <div class="sidebar-header">
-    <h4> Navigation</h4>
+    <h4>{{ config('app.name') }}</h4>
     <span class="btn-close" uk-toggle="target: #wrapper ; cls: collapse-sidebar mobile-visible"></span>
   </div>
 

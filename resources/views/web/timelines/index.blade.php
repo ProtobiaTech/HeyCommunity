@@ -7,19 +7,17 @@
         <div class="uk-width-2-3@m fead-area">
           @include('web.timelines._create')
 
-          @foreach ($timelines as $timeline)
-            @include('web.timelines._post')
-          @endforeach
-
-          <div class="post">
-            <div class="post-description">
-              @if (request()->get('q'))
-                没有与 "{{ request()->get('q') }}" 有关的动态
-              @else
+          @if ($timelines->count())
+            @foreach ($timelines as $timeline)
+              @include('web.timelines._post')
+            @endforeach
+          @else
+            <div class="post">
+              <div class="post-description">
                 没有动态，你来发布第一条动态吧 ~
-              @endif
+              </div>
             </div>
-          </div>
+          @endif
         </div>
 
         <!-- sidebar -->
