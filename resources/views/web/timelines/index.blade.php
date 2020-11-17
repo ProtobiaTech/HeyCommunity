@@ -18,6 +18,10 @@
               </div>
             </div>
           @endif
+
+          <div id="section-pagination" class="uk-margin-medium-top">
+            {{ $timelines->links('system.pagination.simple') }}
+          </div>
         </div>
 
         <!-- sidebar -->
