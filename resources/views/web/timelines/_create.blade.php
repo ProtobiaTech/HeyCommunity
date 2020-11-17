@@ -61,7 +61,7 @@
 
           <div class="post-new-tab-nav">
             <a uk-tooltip="title:图片; offset:4;" onclick="$('#section-timeline-create-card input[name=input-image]').click();"><i class="uil-image"></i></a>
-            <a uk-tooltip="title:视频; offset:4;"><i class="uil-youtube-alt"></i></a>
+            <a uk-tooltip="title:视频不可用; offset:4;"><i class="uil-youtube-alt"></i></a>
           </div>
 
           <div class="uk-flex uk-flex-between">
