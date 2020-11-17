@@ -44,7 +44,7 @@
               <img src="{{ asset(Auth::user()->avatar) }}" alt="">
             </div>
             <div class="post-new-media-input">
-              <textarea class="uk-textarea" name="content" rows="4" placeholder="有什么新鲜事与大家分享 ..." style="resize:none; border:0;"></textarea>
+              <textarea autofocus class="uk-textarea" name="content" rows="4" placeholder="有什么新鲜事与大家分享 ..." style="resize:none; border:0;"></textarea>
               <input type="file" name="input-image" accept="image/*" multiple style="display:none;" onchange="uploadTimelineImage(event)">
             </div>
           </div>
