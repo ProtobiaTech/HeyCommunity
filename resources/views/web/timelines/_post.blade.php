@@ -43,16 +43,25 @@
 
   <!-- post state -->
   <div class="post-state">
-    <a onclick="timelineThumbHandler(this)" class="post-state-btns"
+    <a class="post-state-btns btn-thumb-up"
        data-value="{{ intval($timeline->has_thumb_up) }}"
        data-entity-id="{{ $timeline->id }}"
-       data-type="thumb_up">
+       data-type="thumb_up"
+       onclick="timelineThumbHandler(this)">
       <i class="uil-thumbs-up icon-inactive {{ $timeline->has_thumb_up ? 'uk-hidden' : '' }}"></i>
       <i class="uil-thumbs-up icon-active {{ $timeline->has_thumb_up ? '' : 'uk-hidden' }}"></i>
       <span class="num">{{ $timeline->thumb_up_num ?: '' }}</span>
       <span>点赞</span>
     </a>
-    <div class="post-state-btns"><i class="uil-comments-alt"></i> {{ $timeline->comment_num ?: '' }} <span>评论</span></div>
+    <a class="post-state-btns btn-comment"
+       data-entity_id="{{ $timeline->id }}"
+       data-parent_id=""
+       data-root_id=""
+       onclick="openTimelineCommentModal(this)">
+      <i class="uil-comments-alt"></i>
+      <span class="num">{{ $timeline->comment_num ?: '' }}</span>
+      <span>评论</span>
+    </a>
     <div class="text-muted post-state-btns" uk-tooltip="title:收藏不可用; pos:top; offset:7;"><i class="uil-heart"></i> {{ $timeline->favorite_num ?: '' }} <span>收藏</span></div>
     <div class="text-muted post-state-btns" uk-tooltip="title:阅读不可用; pos:top; offset:7;"><i class="uil-eye"></i> {{ $timeline->read_num ?: '' }} <span>阅读</span></div>
   </div>
