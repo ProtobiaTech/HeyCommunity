@@ -1,6 +1,11 @@
-#module-timeline .item-timeline .timeline-content,
-#module-timeline .item-timeline .comment-content {
+#module-timeline .item-timeline .text-content {
   word-break: break-all;
+}
+
+#module-timeline .post-add-comment-text-area .input-content {
+  font-size: 14px;
+  box-sizing: border-box;
+  padding-right: 40px;
 }
 
 #section-timeline-create-card .timeline-images {

@@ -66,3 +66,9 @@ Route::group(['namespace' => '\App\Http\Controllers'], function () {
 Route::group(['namespace' => '\App\Http\Controllers', 'middleware' => ['auth']], function () {
     Route::post('thumbs/handler', 'ThumbController@handler')->name('thumbs.handler');
 });
+
+//
+// Comment
+Route::group(['namespace' => '\App\Http\Controllers', 'middleware' => ['auth']], function () {
+    Route::post('comments', 'CommentController@store')->name('comments.store');
+});

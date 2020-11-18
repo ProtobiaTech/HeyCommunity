@@ -29,4 +29,7 @@
       </div>
     </div>
   </div>
+
+  <!-- Create Comment Modal -->
+  @include('web.timelines._create-post-comment')
 @endsection

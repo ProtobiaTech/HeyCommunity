@@ -1,7 +1,15 @@
 #module-timeline {
   .item-timeline {
-    .timeline-content, .comment-content {
+    .text-content {
       word-break: break-all;
+    }
+  }
+
+  .post-add-comment-text-area {
+    .input-content {
+      font-size: 14px;
+      box-sizing: border-box;
+      padding-right: 40px;
     }
   }
 }

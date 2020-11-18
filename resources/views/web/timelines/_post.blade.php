@@ -38,7 +38,7 @@
       </div>
     </div>
 
-    <p class="timeline-content">{!! nl2br($timeline->content) !!}</p>
+    <p class="text-content">{!! nl2br($timeline->content) !!}</p>
   </div>
 
   <!-- post state -->
@@ -74,7 +74,7 @@
           <div class="post-comment-text">
             <div class="post-comment-text-inner">
               <h6><a style="color:#545454;" href="{{ route('users.home', $comment->user_id) }}">{{ $comment->user->nickname }}</a></h6>
-              <p class="comment-content">{{ $comment->content }}</p>
+              <p class="text-content">{{ $comment->content }}</p>
             </div>
             <div class="uk-text-small">
               <a class="text-dark mr-1" uk-tooltip="title:不可用; offset:4;"><i class="uil-thumbs-up"></i>点赞</a>
@@ -101,7 +101,12 @@
           <form action="{{ route('timelines.comments.store', $timeline) }}" method="post">
             {{ csrf_field() }}
 
-            <input type="text" name="content" placeholder="分享你的看法 ..." style="font-size:14px;">
+            <input class="input-content" type="text" name="content" placeholder="分享你的看法 ..."
+                   onfocus="openTimelineCommentModal(this)"
+                   data-entity_id="{{ $timeline->id }}"
+                   data-parent_id=""
+                   data-root_id=""
+                   style="font-size:14px;">
 
             <div class="icons">
               <button type="submit" class="button-text uil-enter" style="border:none; margin:0; background:none; font-size:19px; color:rgb(109,109,109)"></button>

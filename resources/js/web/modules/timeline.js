@@ -127,3 +127,43 @@ window.timelineThumbHandler = function(elem) {
     }
   });
 };
+
+/**
+ * 打开动态评论模态框
+ */
+window.openTimelineCommentModal = function(elem) {
+  console.log('elem', elem);
+
+  var timelineCommentModal = $('#modal-timeline-comment');
+
+  timelineCommentModal.find('input[name="entity_id"]').val($(elem).attr('data-entity_id'));
+  timelineCommentModal.find('input[name="parent_id"]').val($(elem).attr('data-parent_id'));
+  timelineCommentModal.find('input[name="root_id"]').val($(elem).attr('data-root_id'));
+  timelineCommentModal.find('textarea[name="content"]').val('');
+
+  UIkit.modal('#modal-timeline-comment').show();
+};
+
+/**
+ * 发布动态评论处理
+ */
+window.timelineCommentHandler = function(event) {
+  this.event.preventDefault();
+
+  var handlerRoute = '/comments';
+
+  var params = {entity_type: 'App\\Models\\Timeline'};
+  var formData = $(event.target).serializeArray();
+  formData.forEach(function(item) {
+    params[item.name] = item.value;
+  });
+
+  $.post(handlerRoute, params, function(data) {
+    console.log('get result', data);
+
+    // 添加评论到列表中
+  });
+
+
+  UIkit.modal('#modal-timeline-comment').hide();
+}
