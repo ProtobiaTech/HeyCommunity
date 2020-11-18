@@ -59,7 +59,7 @@
 
   <!-- post comments -->
   <div class="post-comments">
-    @if ($timeline->comment_num)
+    @if (true || $timeline->comment_num)
       @if (false & $timeline->comment_num > 5)
         <a href="#" class="view-more-comment"> 显示全部 {{ $timeline->comments->count() }} 个评论</a>
       @endif

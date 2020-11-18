@@ -284,9 +284,9 @@ window.timelineCommentHandler = function (event) {
     params[item.name] = item.value;
   });
   $.post(handlerRoute, params, function (data) {
-    // 添加评论到列表中
-    var timelineBox = $('.item-timeline-' + data['entity_id']);
-    var commentBox = timelineBox.find('.items-comment');
+    console.log('success', data); // 添加评论到列表中
+
+    var commentBox = $('.item-timeline-' + data['entity_id']).find('.items-comment');
     var tempComment = $('.post-comments-single.uk-hidden').clone(); // 替换内容
 
     tempComment.find('.post-comment-avatar a').attr('href', data.user_id);
