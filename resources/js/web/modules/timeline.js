@@ -159,11 +159,20 @@ window.timelineCommentHandler = function(event) {
   });
 
   $.post(handlerRoute, params, function(data) {
-    console.log('get result', data);
-
     // 添加评论到列表中
+    var timelineBox = $('.item-timeline-' + data['entity_id']);
+    var commentBox = timelineBox.find('.items-comment');
+    var tempComment = $('.post-comments-single.uk-hidden').clone();
+
+    // 替换内容
+    tempComment.find('.post-comment-avatar a').attr('href', data.user_id);
+    tempComment.find('.post-comment-avatar img').attr('src', data.user.avatar);
+    tempComment.find('.post-comment-avatar img').attr('alt', data.user.nickname);
+    tempComment.find('.post-comment-text .text-content').text(data.content);
+
+    tempComment.prependTo(commentBox);
+    tempComment.removeClass('uk-hidden');
+
+    UIkit.modal('#modal-timeline-comment').hide();
   });
-
-
-  UIkit.modal('#modal-timeline-comment').hide();
-}
+};

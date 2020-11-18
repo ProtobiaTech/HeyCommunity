@@ -1,4 +1,4 @@
-<div class="post item-timeline">
+<div class="post item-timeline item-timeline-{{ $timeline->id }}">
   <!-- post header -->
   <div class="post-heading">
     <div class="post-avature">
@@ -64,41 +64,43 @@
         <a href="#" class="view-more-comment"> 显示全部 {{ $timeline->comments->count() }} 个评论</a>
       @endif
 
-      @foreach($timeline->comments as $comment)
-        <div class="post-comments-single">
-          <div class="post-comment-avatar">
-            <a href="{{ route('users.home', $comment->user_id) }}">
-              <img src="{{ asset($comment->user->avatar) }}" alt="{{ $comment->user->nickname }}">
-            </a>
-          </div>
-          <div class="post-comment-text">
-            <div class="post-comment-text-inner">
-              <h6>
-                <a style="color:#545454;" href="{{ route('users.home', $comment->user_id) }}">{{ $comment->user->nickname }}</a>
-
-                @if ($comment->parent)
-                  <span class="uk-text-normal">回复</span>
-                  <a style="color:#545454;" href="{{ route('users.home', $comment->parent->user_id) }}">{{ $comment->parent->user->nickname }}</a>
-                @endif
-              </h6>
-              <p class="text-content">{{ $comment->content }}</p>
-            </div>
-            <div class="uk-text-small">
-              <a class="text-dark mr-1" uk-tooltip="title:不可用; offset:4;"><i class="uil-thumbs-up"></i>点赞</a>
-              &nbsp;
-              <a class="text-dark mr-1"
-                 data-entity_id="{{ $comment->entity_id }}"
-                 data-parent_id="{{ $comment->id }}"
-                 data-root_id="{{ $comment->root_id ?: $comment->id }}"
-                 onclick="openTimelineCommentModal(this)">
-                <i class="uil-comment-edit"></i>回复
+      <div class="items-comment">
+        @foreach($timeline->comments as $comment)
+          <div class="post-comments-single">
+            <div class="post-comment-avatar">
+              <a href="{{ route('users.home', $comment->user_id) }}">
+                <img src="{{ asset($comment->user->avatar) }}" alt="{{ $comment->user->nickname }}">
               </a>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <span class="uk-float-right">{{ $comment->created_at->diffForHumans() }}</span>
+            </div>
+            <div class="post-comment-text">
+              <div class="post-comment-text-inner">
+                <h6>
+                  <a style="color:#545454;" href="{{ route('users.home', $comment->user_id) }}">{{ $comment->user->nickname }}</a>
+
+                  @if ($comment->parent)
+                    <span class="uk-text-normal">回复</span>
+                    <a style="color:#545454;" href="{{ route('users.home', $comment->parent->user_id) }}">{{ $comment->parent->user->nickname }}</a>
+                  @endif
+                </h6>
+                <p class="text-content">{{ $comment->content }}</p>
+              </div>
+              <div class="uk-text-small">
+                <a class="text-dark mr-1" uk-tooltip="title:不可用; offset:4;"><i class="uil-thumbs-up"></i>点赞</a>
+                &nbsp;
+                <a class="text-dark mr-1"
+                   data-entity_id="{{ $comment->entity_id }}"
+                   data-parent_id="{{ $comment->id }}"
+                   data-root_id="{{ $comment->root_id ?: $comment->id }}"
+                   onclick="openTimelineCommentModal(this)">
+                  <i class="uil-comment-edit"></i>回复
+                </a>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span class="uk-float-right">{{ $comment->created_at->diffForHumans() }}</span>
+              </div>
             </div>
           </div>
-        </div>
-      @endforeach
+        @endforeach
+      </div>
 
       @if (false & $timeline->comment_num > 5)
         <a href="#" class="view-more-comment"> 显示全部 {{ $timeline->comments->count() }} 个评论</a>

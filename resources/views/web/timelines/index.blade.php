@@ -32,4 +32,7 @@
 
   <!-- Create Comment Modal -->
   @include('web.timelines._create-post-comment')
+
+  <!-- Item Comment Temp -->
+  @include('web.timelines._temp-item-comment')
 @endsection

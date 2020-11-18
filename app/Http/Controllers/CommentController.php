@@ -48,6 +48,7 @@ class CommentController extends Controller
 
             // flash('评论成功')->success();
 
+            $comment->load(['user', 'parent']);
             return response()->json($comment);
             return back();
         } else {
