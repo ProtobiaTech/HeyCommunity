@@ -141,7 +141,9 @@ window.openTimelineCommentModal = function(elem) {
   timelineCommentModal.find('input[name="root_id"]').val($(elem).attr('data-root_id'));
   timelineCommentModal.find('textarea[name="content"]').val('');
 
-  UIkit.modal('#modal-timeline-comment').show();
+  UIkit.modal('#modal-timeline-comment').show().then(function() {
+    timelineCommentModal.find('textarea[name="content"]').focus();
+  });
 };
 
 /**

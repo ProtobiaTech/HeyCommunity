@@ -121,21 +121,13 @@
         <div class="post-add-comment-avature">
           <img src="{{ asset(Auth::user()->avatar) }}">
         </div>
-        <div class="post-add-comment-text-area">
-          <form action="{{ route('timelines.comments.store', $timeline) }}" method="post">
-            {{ csrf_field() }}
-
-            <input class="input-content" type="text" name="content" placeholder="分享你的看法 ..."
-                   onfocus="openTimelineCommentModal(this)"
-                   data-entity_id="{{ $timeline->id }}"
-                   data-parent_id=""
-                   data-root_id=""
-                   style="font-size:14px;">
-
-            <div class="icons">
-              <button type="submit" class="button-text uil-enter" style="border:none; margin:0; background:none; font-size:19px; color:rgb(109,109,109)"></button>
-            </div>
-          </form>
+        <div class="post-add-comment-text-area"
+             data-entity_id="{{ $timeline->id }}"
+             data-parent_id=""
+             data-root_id=""
+             onclick="openTimelineCommentModal(this)">
+          <div class="input-content" style="font-size:14px; line-height:32px; color:#aaa;">分享你的看法</div>
+          <div class="icons"><span class="uil-grin"></span></div>
         </div>
       </div>
     @endif
