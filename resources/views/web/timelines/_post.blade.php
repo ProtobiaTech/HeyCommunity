@@ -45,8 +45,8 @@
   <div class="post-state">
     <a class="post-state-btns btn-thumb-up"
        data-value="{{ intval($timeline->has_thumb_up) }}"
-       data-entity-type="App\Models\Timeline"
-       data-entity-id="{{ $timeline->id }}"
+       data-entity_type="App\Models\Timeline"
+       data-entity_id="{{ $timeline->id }}"
        data-type="thumb_up"
        onclick="timelineThumbHandler(this)">
       <i class="uil-thumbs-up"></i>
@@ -95,8 +95,8 @@
               <div class="uk-text-small">
                 <a class="text-dark mr-1"
                    data-value="{{ intval($comment->has_thumb_up) }}"
-                   data-entity-type="App\Models\Common\Comment"
-                   data-entity-id="{{ $comment->id }}"
+                   data-entity_type="App\Models\Common\Comment"
+                   data-entity_id="{{ $comment->id }}"
                    data-type="thumb_up"
                    onclick="timelineThumbHandler(this)">
                   <i class="uil-thumbs-up"></i>点赞

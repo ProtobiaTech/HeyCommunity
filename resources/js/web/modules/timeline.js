@@ -94,8 +94,8 @@ window.deleteTimelineImage = function(event) {
  * 动态点赞
  */
 window.timelineThumbHandler = function(elem) {
-  var entityType = $(elem).attr('data-entity-type');
-  var entityId = $(elem).attr('data-entity-id');
+  var entityType = $(elem).attr('data-entity_type');
+  var entityId = $(elem).attr('data-entity_id');
   var handlerRoute = '/thumbs';
   var type = $(elem).attr('data-type');
   var value = parseInt($(elem).attr('data-value'));
@@ -188,6 +188,7 @@ window.timelineCommentHandler = function(event) {
     tempComment.find('.post-comment-text .text-content').text(data.content);
 
     // 替换点赞按钮参数
+    tempComment.find('.post-comment-text .btn-thumb-up').attr('data-entity_id', data.id);
 
     // 替换回复按钮参数
     tempComment.find('.post-comment-text .btn-comment').attr('data-entity_id', data.entity_id);

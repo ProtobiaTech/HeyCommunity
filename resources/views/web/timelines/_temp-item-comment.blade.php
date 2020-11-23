@@ -15,8 +15,14 @@
       <p class="text-content"></p>
     </div>
     <div class="uk-text-small">
-      <a class="btn-thumb-up text-dark mr-1">
+      <a class="btn-thumb-up text-dark mr-1"
+         data-value="0"
+         data-entity_type="App\Models\Common\Comment"
+         data-entity_id=""
+         data-type="thumb_up"
+         onclick="timelineThumbHandler(this)">
         <i class="uil-thumbs-up"></i>点赞
+        <sup class="num"></sup>
       </a>
       &nbsp;
       <a class="btn-comment text-dark mr-1"
