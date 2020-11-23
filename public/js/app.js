@@ -237,7 +237,6 @@ window.timelineThumbHandler = function (elem) {
     type: type,
     value: value ? 0 : 1
   };
-  console.log('elem', elem);
   $.post(handlerRoute, data, function (data) {
     console.log('get result', data, data[hasThumbColumnName]); // 动态点赞
     // 设置点赞数 & 更改点赞状态

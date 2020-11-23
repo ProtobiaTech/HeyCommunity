@@ -109,8 +109,6 @@ window.timelineThumbHandler = function(elem) {
     value: value ? 0 : 1,
   };
 
-  console.log('elem', elem);
-
   $.post(handlerRoute, data, function(data) {
     console.log('get result', data, data[hasThumbColumnName]);
 
