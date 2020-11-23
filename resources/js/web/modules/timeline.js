@@ -94,8 +94,8 @@ window.deleteTimelineImage = function(event) {
  * 动态点赞
  */
 window.timelineThumbHandler = function(elem) {
+  var entityType = $(elem).attr('data-entity-type');
   var entityId = $(elem).attr('data-entity-id');
-  var entityType = 'App\\Models\\Timeline';
   var handlerRoute = '/thumbs/handler';
   var type = $(elem).attr('data-type');
   var value = parseInt($(elem).attr('data-value'));

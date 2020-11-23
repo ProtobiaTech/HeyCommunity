@@ -47,21 +47,4 @@ class Timeline extends BaseModel
             ->limit(5)
             ->latest();
     }
-
-    /**
-     * Get has thumb up
-     */
-    public function getHasThumbUpAttribute()
-    {
-        if (Auth::check()) {
-            return Thumb::where([
-                'user_id'       =>  Auth::id(),
-                'entity_type'   =>  get_class($this),
-                'entity_id'     =>  $this->id,
-                'type'          =>  'thumb_up',
-            ])->exists() ? 1 : 0;
-        }
-
-        return 0;
-    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Common\Thumb;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -55,4 +56,20 @@ class BaseModel extends Model
             ->whereDate('created_at', '<=', Carbon::today()->endOfDay());
     }
 
+    /**
+     * Get has thumb up
+     */
+    public function getHasThumbUpAttribute()
+    {
+        if (Auth::check()) {
+            return Thumb::where([
+                'user_id'       =>  Auth::id(),
+                'entity_type'   =>  get_class($this),
+                'entity_id'     =>  $this->id,
+                'type'          =>  'thumb_up',
+            ])->exists() ? 1 : 0;
+        }
+
+        return 0;
+    }
 }
