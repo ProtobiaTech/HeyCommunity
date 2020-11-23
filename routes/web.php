@@ -64,7 +64,7 @@ Route::group(['namespace' => '\App\Http\Controllers'], function () {
 //
 // Thumb
 Route::group(['namespace' => '\App\Http\Controllers', 'middleware' => ['auth']], function () {
-    Route::post('thumbs/handler', 'ThumbController@handler')->name('thumbs.handler');
+    Route::post('thumbs', 'ThumbController@handler')->name('thumbs.handler');
 });
 
 //
