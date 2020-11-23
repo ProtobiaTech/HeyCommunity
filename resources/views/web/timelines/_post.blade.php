@@ -49,8 +49,7 @@
        data-entity-id="{{ $timeline->id }}"
        data-type="thumb_up"
        onclick="timelineThumbHandler(this)">
-      <i class="uil-thumbs-up icon-inactive {{ $timeline->has_thumb_up ? 'uk-hidden' : '' }}"></i>
-      <i class="uil-thumbs-up icon-active {{ $timeline->has_thumb_up ? '' : 'uk-hidden' }}"></i>
+      <i class="uil-thumbs-up"></i>
       <span class="num">{{ $timeline->thumb_up_num ?: '' }}</span>
       <span>点赞</span>
     </a>
@@ -101,7 +100,8 @@
                    data-entity-id="{{ $comment->id }}"
                    data-type="thumb_up"
                    onclick="timelineThumbHandler(this)">
-                  <i class="uil-thumbs-up"></i>{{ $comment->has_thumb_up ? '已赞' : '点赞' }}
+                  <i class="uil-thumbs-up"></i>点赞
+                  <sup class="num">{{ $comment->thumb_up_num ? 'x' . $comment->thumb_up_num : '' }}</sup>
                 </a>
                 &nbsp;
                 <a class="text-dark mr-1"

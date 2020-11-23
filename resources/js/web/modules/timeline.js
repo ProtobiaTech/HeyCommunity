@@ -109,21 +109,21 @@ window.timelineThumbHandler = function(elem) {
     value: value ? 0 : 1,
   };
 
+  console.log('elem', elem);
+
   $.post(handlerRoute, data, function(data) {
-    console.log(thumbNumColumnName, hasThumbColumnName);
     console.log('get result', data, data[hasThumbColumnName]);
 
-    // 设置点赞数
-    $(elem).find('.num').text(data[thumbNumColumnName] ? data[thumbNumColumnName] : '');
+    // 动态点赞
+    // 设置点赞数 & 更改点赞状态
+    if (entityType === 'App\\Models\\Timeline') {
+      $(elem).find('.num').text(data[thumbNumColumnName] ? data[thumbNumColumnName] : '');
+      $(elem).attr('data-value', data[hasThumbColumnName]);
+    }
 
-    // 更改点赞状态
-    $(elem).attr('data-value', data[hasThumbColumnName]);
-    if (data[hasThumbColumnName]) {
-      $(elem).find('.icon-inactive').addClass('uk-hidden');
-      $(elem).find('.icon-active').removeClass('uk-hidden');
-    } else {
-      $(elem).find('.icon-inactive').removeClass('uk-hidden');
-      $(elem).find('.icon-active').addClass('uk-hidden');
+    if (entityType === 'App\\Models\\Common\\Comment') {
+      $(elem).find('.num').text(data[thumbNumColumnName] ? 'x' + data[thumbNumColumnName] : '');
+      $(elem).attr('data-value', data[hasThumbColumnName]);
     }
   });
 };

@@ -7,6 +7,11 @@ use App\Models\BaseModel;
 class Comment extends BaseModel
 {
     /**
+     * Append attributes
+     */
+    protected $appends = ['has_thumb_up'];
+
+    /**
      * Relation Entity
      */
     public function entity()

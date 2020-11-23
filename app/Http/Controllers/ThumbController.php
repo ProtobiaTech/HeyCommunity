@@ -25,6 +25,7 @@ class ThumbController extends Controller
 
         $entityThumbNumColumn = $request->get('type') . '_num';
 
+        // 点赞 或 取消点赞
         if ($request->get('value')) {
             $thumb = Thumb::firstOrCreate([
                 'user_id'       =>  Auth::id(),
