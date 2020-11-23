@@ -5,22 +5,23 @@
   <div class="post-comment-text">
     <div class="post-comment-text-inner">
       <h6>
-        <a style="color:#545454;" href=""></a>
+        <a class="nickname" style="color:#545454;" href=""></a>
 
-        <div class="uk-inline uk-hidden">
+        <div class="parent-area uk-inline uk-hidden">
           <span class="uk-text-normal">回复</span>
-          <a style="color:#545454;" href=""></a>
+          <a class="nickname" style="color:#545454;" href=""></a>
         </div>
       </h6>
       <p class="text-content"></p>
     </div>
     <div class="uk-text-small">
-      <a class="text-dark mr-1" uk-tooltip="title:不可用; offset:4;"><i class="uil-thumbs-up"></i>点赞</a>
+      <a class="btn-thumb-up text-dark mr-1">
+        <i class="uil-thumbs-up"></i>点赞
+      </a>
       &nbsp;
-      <a class="text-dark mr-1"
+      <a class="btn-comment text-dark mr-1"
          data-entity_id=""
          data-parent_id=""
-         data-root_id=""
          onclick="openTimelineCommentModal(this)">
         <i class="uil-comment-edit"></i>回复
       </a>

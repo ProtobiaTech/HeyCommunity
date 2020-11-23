@@ -2,6 +2,7 @@
   <div class="uk-modal-dialog uk-modal-body" style="border-radius:6px;">
     <form method="post" onsubmit="timelineCommentHandler(event)">
       <h2 class="uk-modal-title">评论动态</h2>
+      <input type="hidden" name="entity_type" value="App\Models\Timeline">
       <input type="hidden" name="entity_id">
       <input type="hidden" name="parent_id">
       <input type="hidden" name="root_id">

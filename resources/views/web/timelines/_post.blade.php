@@ -56,7 +56,6 @@
     <a class="post-state-btns btn-comment"
        data-entity_id="{{ $timeline->id }}"
        data-parent_id=""
-       data-root_id=""
        onclick="openTimelineCommentModal(this)">
       <i class="uil-comments-alt"></i>
       <span class="num">{{ $timeline->comment_num ?: '' }}</span>
@@ -107,7 +106,6 @@
                 <a class="text-dark mr-1"
                    data-entity_id="{{ $comment->entity_id }}"
                    data-parent_id="{{ $comment->id }}"
-                   data-root_id="{{ $comment->root_id ?: $comment->id }}"
                    onclick="openTimelineCommentModal(this)">
                   <i class="uil-comment-edit"></i>回复
                 </a>
@@ -132,7 +130,6 @@
         <div class="post-add-comment-text-area"
              data-entity_id="{{ $timeline->id }}"
              data-parent_id=""
-             data-root_id=""
              onclick="openTimelineCommentModal(this)">
           <div class="input-content" style="font-size:14px; line-height:32px; color:#aaa;">分享你的看法</div>
           <div class="icons"><span class="uil-grin"></span></div>

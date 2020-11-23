@@ -34,4 +34,12 @@ class Comment extends BaseModel
     {
         return $this->belongsTo(self::class, 'parent_id', 'id')->withTrashed();
     }
+
+    /**
+     * Related Root Comment
+     */
+    public function root()
+    {
+        return $this->belongsTo(self::class, 'root_id', 'id')->withTrashed();
+    }
 }

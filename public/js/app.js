@@ -276,25 +276,40 @@ window.openTimelineCommentModal = function (elem) {
 window.timelineCommentHandler = function (event) {
   this.event.preventDefault();
   var handlerRoute = '/comments';
-  var params = {
-    entity_type: 'App\\Models\\Timeline'
-  };
+  var params = {};
   var formData = $(event.target).serializeArray();
   formData.forEach(function (item) {
     params[item.name] = item.value;
   });
   $.post(handlerRoute, params, function (data) {
-    console.log('success', data); // 修改评论数 和 修改评论状态
+    console.log('success', data); // 修改评论数
 
     $('.item-timeline-' + data['entity_id']).find('.btn-comment .num').text(data.entity.comment_num); // 添加评论到列表中
 
     var commentBox = $('.item-timeline-' + data['entity_id']).find('.items-comment');
-    var tempComment = $('.post-comments-single.uk-hidden').clone(); // 替换内容
+    var tempComment = $('.post-comments-single.uk-hidden').clone(); // 替换内容 头像
 
-    tempComment.find('.post-comment-avatar a').attr('href', data.user_id);
+    tempComment.find('.post-comment-avatar a').attr('href', data.user_id); // TODO: 用户主页链接
+
     tempComment.find('.post-comment-avatar img').attr('src', data.user.avatar);
-    tempComment.find('.post-comment-avatar img').attr('alt', data.user.nickname);
-    tempComment.find('.post-comment-text .text-content').text(data.content);
+    tempComment.find('.post-comment-avatar img').attr('alt', data.user.nickname); // 替换内容 用户
+
+    tempComment.find('.post-comment-text .nickname').text(data.user.nickname);
+    tempComment.find('.post-comment-text .nickname').attr('href', data.user.id); // TODO: 用户主页链接
+    // 替换内容 回复目标用户
+
+    if (data.parent) {
+      tempComment.find('.post-comment-text .parent-area').removeClass('uk-hidden');
+      tempComment.find('.post-comment-text .parent-area .nickname').text(data.parent.user.nickname);
+      tempComment.find('.post-comment-text .parent-area .nickname').attr('href', data.parent.user.id); // TODO: 用户主页链接
+    } // 替换内容 内容
+
+
+    tempComment.find('.post-comment-text .text-content').text(data.content); // 替换点赞按钮参数
+    // 替换回复按钮参数
+
+    tempComment.find('.post-comment-text .btn-comment').attr('data-entity_id', data.entity_id);
+    tempComment.find('.post-comment-text .btn-comment').attr('data-parent_id', data.id);
     tempComment.prependTo(commentBox);
     tempComment.removeClass('uk-hidden');
     UIkit.modal('#modal-timeline-comment').hide();
