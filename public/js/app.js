@@ -122,10 +122,12 @@ function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o =
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
 window.timelineFormEl = $('#section-timeline-create-card form');
-window.timelineFormAssetsAreaEl = $(timelineFormEl).find('.timeline-assets');
+window.timelineFormAssetsAreaEl = $(timelineFormEl).find('.timeline-assets'); // window.timelineUploadImageRoute = '';
+// window.timelineUploadVideoRoute = '';
+// TODO: 每次打开发布模态框时，初始化
+
 window.timelineFormInputImageIds = [];
 window.timelineFormInputVideoIds = [];
-window.timelineUploadImageRoute = '';
 /**
  * 提交动态表单
  */
@@ -154,6 +156,24 @@ window.submitTimelineForm = function (event) {
     inputEl.value = id;
     event.target.appendChild(inputEl);
   });
+};
+/**
+ * 动态资源上传中状态
+ */
+
+
+window.setTimelineAssetsUploadingStatus = function () {
+  $(timelineFormEl).find('.post-new-tab-nav .item').hide();
+  $(timelineFormEl).find('.post-new-tab-nav .loading').show();
+};
+/**
+ * 动态资源上传完成
+ */
+
+
+window.setTimelineAssetsUploadCompleted = function () {
+  $(timelineFormEl).find('.post-new-tab-nav .item').show();
+  $(timelineFormEl).find('.post-new-tab-nav .loading').hide();
 };
 /**
  * 添加动态资源
@@ -188,6 +208,7 @@ window.uploadTimelineAsset = function (type) {
   var ajaxUrl;
   if (type === 'image') ajaxUrl = timelineUploadImageRoute;
   if (type === 'video') ajaxUrl = timelineUploadVideoRoute;
+  setTimelineAssetsUploadingStatus();
 
   var _iterator = _createForOfIteratorHelper(this.event.target.files),
       _step;
@@ -220,6 +241,7 @@ window.uploadTimelineAsset = function (type) {
     _iterator.f();
   }
 
+  setTimelineAssetsUploadCompleted();
   $(timelineFormEl).find('input[name=input-image]').val(null);
   $(timelineFormEl).find('input[name=input-video]').val(null);
 };

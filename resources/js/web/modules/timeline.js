@@ -1,10 +1,12 @@
 window.timelineFormEl = $('#section-timeline-create-card form');
 window.timelineFormAssetsAreaEl = $(timelineFormEl).find('.timeline-assets');
 
+// window.timelineUploadImageRoute = '';
+// window.timelineUploadVideoRoute = '';
+
+// TODO: 每次打开发布模态框时，初始化
 window.timelineFormInputImageIds = [];
 window.timelineFormInputVideoIds = [];
-
-window.timelineUploadImageRoute = '';
 
 /**
  * 提交动态表单
@@ -38,6 +40,23 @@ window.submitTimelineForm = function(event) {
 };
 
 /**
+ * 动态资源上传中状态
+ */
+window.setTimelineAssetsUploadingStatus = function() {
+  $(timelineFormEl).find('.post-new-tab-nav .item').hide();
+  $(timelineFormEl).find('.post-new-tab-nav .loading').show();
+};
+
+/**
+ * 动态资源上传完成
+ */
+window.setTimelineAssetsUploadCompleted = function() {
+  $(timelineFormEl).find('.post-new-tab-nav .item').show();
+  $(timelineFormEl).find('.post-new-tab-nav .loading').hide();
+};
+
+
+/**
  * 添加动态资源
  */
 window.addTimelineAsset = function(type) {
@@ -69,6 +88,8 @@ window.uploadTimelineAsset = function(type) {
   if (type === 'image') ajaxUrl = timelineUploadImageRoute;
   if (type === 'video') ajaxUrl = timelineUploadVideoRoute;
 
+  setTimelineAssetsUploadingStatus();
+
   for (var file of this.event.target.files) {
     formData.append('file', file);
 
@@ -90,6 +111,8 @@ window.uploadTimelineAsset = function(type) {
       }
     });
   }
+
+  setTimelineAssetsUploadCompleted();
 
   $(timelineFormEl).find('input[name=input-image]').val(null);
   $(timelineFormEl).find('input[name=input-video]').val(null);

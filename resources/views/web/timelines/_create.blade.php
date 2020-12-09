@@ -58,15 +58,16 @@
             </div>
             <div class="item-asset item-video uk-hidden">
               <div class="handler-delete" onclick="deleteTimelineAsset('video')"><i class="text-white uil-trash-alt"></i></div>
-              <video uk-video><source src="/videos/v1.mp4" type="video/mp4"></video>
+              <video><source src="" type="video/mp4"></video>
             </div>
           </div>
 
-          <!-- timeline video -->
-
           <div class="post-new-tab-nav">
-            <a uk-tooltip="title:图片; offset:4;" onclick="addTimelineAsset('image')"><i class="uil-image"></i></a>
-            <a uk-tooltip="title:视频; offset:4;"  onclick="addTimelineAsset('video')"><i class="uil-youtube-alt"></i></a>
+            <a class="item" uk-tooltip="title:图片; offset:4;" onclick="addTimelineAsset('image')"><i class="uil-image"></i></a>
+            <a class="item" uk-tooltip="title:视频; offset:4;"  onclick="addTimelineAsset('video')"><i class="uil-youtube-alt"></i></a>
+            <div class="loading" style="display:none;">
+              <i class="icon-feather-loader"></i> 资源上传中
+            </div>
           </div>
 
           <div class="uk-flex uk-flex-between">
