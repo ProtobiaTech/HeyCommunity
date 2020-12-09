@@ -111,7 +111,7 @@
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
   }
 </script>
-<script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ mix('js/app.js') }}"></script>
 
 <!-- uk notification -->
 @include('web.layouts._uk-notice')

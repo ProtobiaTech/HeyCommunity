@@ -6,6 +6,7 @@ use App\Models\Common\Comment;
 use App\Models\Common\Thumb;
 use App\Models\Timeline;
 use App\Models\TimelineImage;
+use App\Models\TimelineVideo;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -45,6 +46,8 @@ class TimelineController extends Controller
             'content'       =>  'required|string',
             'imageIds'      =>  'nullable|array',
             'imageIds.*'    =>  'integer',
+            'videoIds'      =>  'nullable|array',
+            'videoIds.*'    =>  'integer',
         ]);
 
         $timeline = new Timeline();
@@ -54,9 +57,9 @@ class TimelineController extends Controller
         ]);
 
         if ($timeline->save()) {
-            if ($request->get('imageIds')) {
-                TimelineImage::whereIn('id', $request->get('imageIds'))->update(['timeline_id' => $timeline->id]);
-            }
+            // has images or videos
+            if ($request->get('imageIds')) TimelineImage::whereIn('id', $request->get('imageIds'))->update(['timeline_id' => $timeline->id]);
+            if ($request->get('videoIds')) TimelineVideo::whereIn('id', $request->get('videoIds'))->update(['timeline_id' => $timeline->id]);
 
             setUkNotice('分享动态成功', 'success');
 
@@ -74,19 +77,38 @@ class TimelineController extends Controller
     public function uploadImage(Request $request)
     {
         $this->validate($request, [
-            'image'     =>  'required|image',
+            'file'      =>  'required|image',
         ]);
 
-        $filePath = Storage::putFile('uploads/timlines', $request->image);
+        $filePath = Storage::putFile('uploads/timlines/images', $request->file);
 
         $timelineImage = TimelineImage::create([
             'user_id'       =>  Auth::id(),
             'file_path'     =>  $filePath,
-            'image_width'   =>  getimagesize($request->image)[0],
-            'image_height'  =>  getimagesize($request->image)[1],
+            'image_width'   =>  getimagesize($request->file)[0],
+            'image_height'  =>  getimagesize($request->file)[1],
         ]);
 
         return response()->json($timelineImage);
+    }
+
+    /**
+     * Upload video
+     */
+    public function uploadVideo(Request $request)
+    {
+        $this->validate($request, [
+            'file'      =>  'required|file',
+        ]);
+
+        $filePath = Storage::putFile('uploads/timlines/videos', $request->file);
+
+        $timelineVideo = TimelineVideo::create([
+            'user_id'       =>  Auth::id(),
+            'file_path'     =>  $filePath,
+        ]);
+
+        return response()->json($timelineVideo);
     }
 
     /**

@@ -1,6 +1,8 @@
 window.timelineFormEl = $('#section-timeline-create-card form');
-window.timelineFormImageAreaEl = $(timelineFormEl).find('.timeline-images');
+window.timelineFormAssetsAreaEl = $(timelineFormEl).find('.timeline-assets');
+
 window.timelineFormInputImageIds = [];
+window.timelineFormInputVideoIds = [];
 
 window.timelineUploadImageRoute = '';
 
@@ -17,27 +19,61 @@ window.submitTimelineForm = function(event) {
   }
 
   // add imageIds input
-  timelineFormInputImageIds.forEach(function(imageId) {
+  timelineFormInputImageIds.forEach(function(id) {
     var inputEl = document.createElement('input');
-    inputEl.name = 'imageIds[' + imageId + ']';
+    inputEl.name = 'imageIds[' + id + ']';
     inputEl.type = 'hidden';
-    inputEl.value = imageId;
+    inputEl.value = id;
+    event.target.appendChild(inputEl);
+  });
+
+  // add videoIds input
+  timelineFormInputVideoIds.forEach(function(id) {
+    var inputEl = document.createElement('input');
+    inputEl.name = 'videoIds[' + id + ']';
+    inputEl.type = 'hidden';
+    inputEl.value = id;
     event.target.appendChild(inputEl);
   });
 };
 
 /**
+ * 添加动态资源
+ */
+window.addTimelineAsset = function(type) {
+  if (type === 'image') {
+    if (timelineFormInputVideoIds.length) {
+      alert('请先删除已上传的图片，再上传视频');
+    } else {
+      $('#section-timeline-create-card input[name=input-image]').click();
+    }
+  }
+
+  if (type === 'video') {
+    if (timelineFormInputImageIds.length) {
+      alert('请先删除已上传的视频，再上传图片');
+    } else {
+      $('#section-timeline-create-card input[name=input-video]').click();
+    }
+  }
+};
+
+/**
  * 上传动态图片
  */
-window.uploadTimelineImage = function(event) {
+window.uploadTimelineAsset = function(type) {
   var formData = new FormData();
   formData.append('_token', $('meta[name=csrf-token]').attr('content'));
 
-  for (var file of event.target.files) {
-    formData.append('image', file);
+  var ajaxUrl;
+  if (type === 'image') ajaxUrl = timelineUploadImageRoute;
+  if (type === 'video') ajaxUrl = timelineUploadVideoRoute;
+
+  for (var file of this.event.target.files) {
+    formData.append('file', file);
 
     $.ajax({
-      url: timelineUploadImageRoute,
+      url: ajaxUrl,
       method: 'POST',
       enctype: 'multipart/form-data',
       cache:false,
@@ -45,49 +81,64 @@ window.uploadTimelineImage = function(event) {
       processData:false,
       data: formData,
       success: function(result) {
-        console.log('upload image success', result);
-        addTimelineImage(result);
+        console.log('upload file success', result);
+        if (type === 'image') addTimelineImageToArea(result);
+        if (type === 'video') addTimelineVideoToArea(result);
       },
       error: function(xhr, status, error) {
-        console.log('upload image error', xhr, status, error);
+        console.log('upload file error', xhr, status, error);
       }
     });
   }
 
   $(timelineFormEl).find('input[name=input-image]').val(null);
+  $(timelineFormEl).find('input[name=input-video]').val(null);
 };
 
 /**
- * 添加动态图片
+ * 添加动态图片到资源区
  */
-window.addTimelineImage = function(image) {
-  // display the image
-  var divEl = $(timelineFormEl).find('.item-image.uk-hidden').clone();
-  var aEl = divEl.find('a')
-  var imgEl = divEl.find('img')
+window.addTimelineImageToArea = function(result) {
+  var divEl = $(timelineFormAssetsAreaEl).find('.item-image.uk-hidden').clone();
+  var aEl = divEl.find('a');
+  var imgEl = divEl.find('img');
 
-  aEl.attr('href', image.file_path);
-  imgEl.attr('src', image.file_path);
-  divEl.appendTo(timelineFormImageAreaEl);
-  divEl.attr('data-id', image.id);
+  divEl.appendTo(timelineFormAssetsAreaEl);
+  aEl.attr('href', result.file_path);
+  imgEl.attr('src', result.file_path);
+  divEl.attr('data-id', result.id);
   divEl.removeClass('uk-hidden');
 
-  timelineFormInputImageIds.push(image.id);
+  timelineFormInputImageIds.push(result.id);
 };
 
 /**
- * 删除动态图片
+ * 添加动态视频到资源区
  */
-window.deleteTimelineImage = function(event) {
+window.addTimelineVideoToArea = function(result) {
+  var divEl = $(timelineFormAssetsAreaEl).find('.item-video.uk-hidden').clone();
+  var videoSourceEl = divEl.find('video');
+
+  divEl.appendTo(timelineFormAssetsAreaEl);
+  divEl.attr('data-id', result.id);
+  divEl.removeClass('uk-hidden');
+  videoSourceEl.attr('src', result.file_path);
+
+  timelineFormInputVideoIds.push(result.id);
+};
+
+/**
+ * 删除动态资源
+ */
+window.deleteTimelineAsset = function(type) {
   this.event.preventDefault();
 
-  var itemImage = $(event.target).parents('.item-image');
-  var imageId = itemImage.attr('data-id');
-  itemImage.remove();
+  var itemAsset = $(this.event.target).parents('.item-asset');
+  var assetId = itemAsset.attr('data-id');
+  itemAsset.remove();
 
-  timelineFormInputImageIds = timelineFormInputImageIds.filter(function(item) {
-    return item != imageId;
-  });
+  if (type === 'image') timelineFormInputImageIds = timelineFormInputImageIds.filter(function(item) { return item != assetId; });
+  if (type === 'video') timelineFormInputVideoIds = timelineFormInputVideoIds.filter(function(item) { return item != assetId; });
 };
 
 /**

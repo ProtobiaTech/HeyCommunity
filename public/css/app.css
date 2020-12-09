@@ -8,25 +8,27 @@
   padding-right: 40px;
 }
 
-#section-timeline-create-card .timeline-images {
+#section-timeline-create-card .timeline-assets {
   margin-top: -5px;
   font-size: 0;
 }
 
-#section-timeline-create-card .timeline-images .item-image {
+#section-timeline-create-card .timeline-assets .item-asset {
   position: relative;
   display: inline-block;
   margin-top: 5px;
   margin-right: 5px;
 }
 
-#section-timeline-create-card .timeline-images .item-image img {
+#section-timeline-create-card .timeline-assets .item-asset img,
+#section-timeline-create-card .timeline-assets .item-asset video {
+  background-color: #DDD;
   display: block;
   width: 80px;
   height: 60px;
 }
 
-#section-timeline-create-card .timeline-images .item-image .handler-delete {
+#section-timeline-create-card .timeline-assets .item-asset .handler-delete {
   position: absolute;
   right: 0;
   background-color: red;

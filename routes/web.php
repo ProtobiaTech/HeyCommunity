@@ -54,6 +54,7 @@ Route::group(['namespace' => '\App\Http\Controllers'], function () {
 // Timeline
 Route::group(['namespace' => '\App\Http\Controllers'], function () {
     Route::post('timelines/upload-image', 'TimelineController@uploadImage')->name('timelines.upload-image');
+    Route::post('timelines/upload-video', 'TimelineController@uploadVideo')->name('timelines.upload-video');
 
     Route::any('timelines/{timeline}/comments', 'TimelineController@commentStore')
         ->where('timeline', '[0-9]+')->name('timelines.comments.store');

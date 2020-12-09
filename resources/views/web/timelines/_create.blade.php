@@ -36,7 +36,7 @@
         <div class="post-new uk-animation-slide-top-small">
           <div class="post-new-header">
             <h4>分享动态</h4>
-            <span class="post-new-btn-close" uk-toggle="target:body; cls:post-focus" uk-tooltip="title:关闭; pos:left;"></span>
+            <span class="post-new-btn-close" uk-toggle="target:body; cls:post-focus"></span>
           </div>
 
           <div class="post-new-media" style="margin-bottom:10px;">
@@ -45,23 +45,28 @@
             </div>
             <div class="post-new-media-input">
               <textarea autofocus class="uk-textarea" name="content" rows="4" placeholder="有什么新鲜事与大家分享 ..." style="resize:none; border:0;"></textarea>
-              <input type="file" name="input-image" accept="image/*" multiple style="display:none;" onchange="uploadTimelineImage(event)">
+              <input type="file" name="input-image" accept="image/*" multiple style="display:none;" onchange="uploadTimelineAsset('image')">
+              <input type="file" name="input-video" accept="video/*" multiple style="display:none;" onchange="uploadTimelineAsset('video')">
             </div>
           </div>
 
-          <!-- timeline images -->
-          <div class="timeline-images" uk-lightbox="animation:slide">
-            <div class="item-image uk-hidden">
-              <div class="handler-delete" onclick="deleteTimelineImage(event)"><i class="text-white uil-trash-alt"></i></div>
+          <!-- timeline assets area -->
+          <div class="timeline-assets" uk-lightbox="animation:slide">
+            <div class="item-asset item-image uk-hidden">
+              <div class="handler-delete" onclick="deleteTimelineAsset('image')"><i class="text-white uil-trash-alt"></i></div>
               <a href=""><img src=""></a>
+            </div>
+            <div class="item-asset item-video uk-hidden">
+              <div class="handler-delete" onclick="deleteTimelineAsset('video')"><i class="text-white uil-trash-alt"></i></div>
+              <video uk-video><source src="/videos/v1.mp4" type="video/mp4"></video>
             </div>
           </div>
 
           <!-- timeline video -->
 
           <div class="post-new-tab-nav">
-            <a uk-tooltip="title:图片; offset:4;" onclick="$('#section-timeline-create-card input[name=input-image]').click();"><i class="uil-image"></i></a>
-            <a uk-tooltip="title:视频不可用; offset:4;"><i class="uil-youtube-alt"></i></a>
+            <a uk-tooltip="title:图片; offset:4;" onclick="addTimelineAsset('image')"><i class="uil-image"></i></a>
+            <a uk-tooltip="title:视频; offset:4;"  onclick="addTimelineAsset('video')"><i class="uil-youtube-alt"></i></a>
           </div>
 
           <div class="uk-flex uk-flex-between">
@@ -77,5 +82,6 @@
 @section('footerJavascript')
   <script>
     window.timelineUploadImageRoute = "{{ route('timelines.upload-image') }}";
+    window.timelineUploadVideoRoute = "{{ route('timelines.upload-video') }}";
   </script>
 @endsection

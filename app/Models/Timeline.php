@@ -21,6 +21,14 @@ class Timeline extends BaseModel
     }
 
     /**
+     * Relate Timeline Video
+     */
+    public function videos()
+    {
+        return $this->hasMany(TimelineVideo::class);
+    }
+
+    /**
      * Related Comment
      */
     public function rootComments()
