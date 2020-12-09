@@ -42,7 +42,9 @@ window.submitTimelineForm = function(event) {
 /**
  * 动态资源上传中状态
  */
+window.timelineUploadAssetsTotal = 0;
 window.setTimelineAssetsUploadingStatus = function() {
+  timelineUploadAssetsTotal++;
   $(timelineFormEl).find('.post-new-tab-nav .item').hide();
   $(timelineFormEl).find('.post-new-tab-nav .loading').show();
 };
@@ -51,8 +53,12 @@ window.setTimelineAssetsUploadingStatus = function() {
  * 动态资源上传完成
  */
 window.setTimelineAssetsUploadCompleted = function() {
-  $(timelineFormEl).find('.post-new-tab-nav .item').show();
-  $(timelineFormEl).find('.post-new-tab-nav .loading').hide();
+  timelineUploadAssetsTotal--;
+
+  if (timelineUploadAssetsTotal == 0) {
+    $(timelineFormEl).find('.post-new-tab-nav .item').show();
+    $(timelineFormEl).find('.post-new-tab-nav .loading').hide();
+  }
 };
 
 
@@ -88,9 +94,10 @@ window.uploadTimelineAsset = function(type) {
   if (type === 'image') ajaxUrl = timelineUploadImageRoute;
   if (type === 'video') ajaxUrl = timelineUploadVideoRoute;
 
-  setTimelineAssetsUploadingStatus();
 
   for (var file of this.event.target.files) {
+    setTimelineAssetsUploadingStatus();
+
     formData.append('file', file);
 
     $.ajax({
@@ -108,11 +115,12 @@ window.uploadTimelineAsset = function(type) {
       },
       error: function(xhr, status, error) {
         console.log('upload file error', xhr, status, error);
-      }
+      },
+      complete: function() {
+        setTimelineAssetsUploadCompleted();
+      },
     });
   }
-
-  setTimelineAssetsUploadCompleted();
 
   $(timelineFormEl).find('input[name=input-image]').val(null);
   $(timelineFormEl).find('input[name=input-video]').val(null);

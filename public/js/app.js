@@ -162,7 +162,10 @@ window.submitTimelineForm = function (event) {
  */
 
 
+window.timelineUploadAssetsTotal = 0;
+
 window.setTimelineAssetsUploadingStatus = function () {
+  timelineUploadAssetsTotal++;
   $(timelineFormEl).find('.post-new-tab-nav .item').hide();
   $(timelineFormEl).find('.post-new-tab-nav .loading').show();
 };
@@ -172,8 +175,12 @@ window.setTimelineAssetsUploadingStatus = function () {
 
 
 window.setTimelineAssetsUploadCompleted = function () {
-  $(timelineFormEl).find('.post-new-tab-nav .item').show();
-  $(timelineFormEl).find('.post-new-tab-nav .loading').hide();
+  timelineUploadAssetsTotal--;
+
+  if (timelineUploadAssetsTotal == 0) {
+    $(timelineFormEl).find('.post-new-tab-nav .item').show();
+    $(timelineFormEl).find('.post-new-tab-nav .loading').hide();
+  }
 };
 /**
  * 添加动态资源
@@ -208,7 +215,6 @@ window.uploadTimelineAsset = function (type) {
   var ajaxUrl;
   if (type === 'image') ajaxUrl = timelineUploadImageRoute;
   if (type === 'video') ajaxUrl = timelineUploadVideoRoute;
-  setTimelineAssetsUploadingStatus();
 
   var _iterator = _createForOfIteratorHelper(this.event.target.files),
       _step;
@@ -216,6 +222,7 @@ window.uploadTimelineAsset = function (type) {
   try {
     for (_iterator.s(); !(_step = _iterator.n()).done;) {
       var file = _step.value;
+      setTimelineAssetsUploadingStatus();
       formData.append('file', file);
       $.ajax({
         url: ajaxUrl,
@@ -232,6 +239,9 @@ window.uploadTimelineAsset = function (type) {
         },
         error: function error(xhr, status, _error) {
           console.log('upload file error', xhr, status, _error);
+        },
+        complete: function complete() {
+          setTimelineAssetsUploadCompleted();
         }
       });
     }
@@ -241,7 +251,6 @@ window.uploadTimelineAsset = function (type) {
     _iterator.f();
   }
 
-  setTimelineAssetsUploadCompleted();
   $(timelineFormEl).find('input[name=input-image]').val(null);
   $(timelineFormEl).find('input[name=input-video]').val(null);
 };
