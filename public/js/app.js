@@ -425,15 +425,15 @@ window.deleteTimeline = function (timelineId) {
     $.ajax({
       url: makeUrl('/timelines/' + timelineId),
       method: 'DELETE',
-      success: function success(result, status, xhr) {
-        console.log('deleteTimeline success', result, status, xhr, xhr.status);
+      success: function success(data, textStatus, jqXHR) {
+        console.log('deleteTimeline success', data, textStatus, jqXHR);
 
-        if (xhr.status === 204) {
+        if (jqXHR.status === 204) {
           $('.item-timeline-' + timelineId).remove();
         }
       },
-      error: function error(xhr, status, _error2) {
-        console.log('deleteTimeline error', xhr, status, _error2);
+      error: function error(jqXHR, textStatus, errorThrown) {
+        console.log('deleteTimeline error', jqXHR, textStatus, errorThrown);
       }
     });
   }
