@@ -28,8 +28,8 @@
 
   <!-- post content -->
   <div class="post-description">
-    <div class="fullsizeimg">
-      @if ($timeline->images)
+    @if ($timeline->images)
+      <div class="fullsizeimg">
         <div class="uk-grid-collapse uk-child-width-expand" uk-lightbox="animation:slide" uk-grid>
           @foreach ($timeline->images as $image)
             <a href="{{ asset($image->file_path) }}">
@@ -37,18 +37,18 @@
             </a>
           @endforeach
         </div>
-      @endif
+      </div>
+    @endif
 
-      @if ($timeline->videos)
-        <div>
-          @foreach ($timeline->videos as $video)
-            <video width="100%" controls>
-              <source src="{{ asset($video->file_path) }}" type="video/mp4"></video>
-            </video>
-          @endforeach
-        </div>
-      @endif
-    </div>
+    @if ($timeline->videos)
+      <div>
+        @foreach ($timeline->videos as $video)
+          <video width="100%" controls>
+            <source src="{{ asset($video->file_path) }}" type="video/mp4"></video>
+          </video>
+        @endforeach
+      </div>
+    @endif
 
     <p class="text-content">{!! nl2br($timeline->content) !!}</p>
   </div>
