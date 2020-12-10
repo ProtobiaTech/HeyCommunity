@@ -104,6 +104,22 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+var token = document.head.querySelector('meta[name="csrf-token"]');
+
+if (token) {
+  $(document).ready(function () {
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': token.content
+      }
+    });
+  });
+} else {
+  console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+}
+
+__webpack_require__(/*! ./utility */ "./resources/js/web/utility.js");
+
 __webpack_require__(/*! ./modules/timeline */ "./resources/js/web/modules/timeline.js");
 
 /***/ }),
@@ -398,6 +414,51 @@ window.timelineCommentHandler = function (event) {
     tempComment.removeClass('uk-hidden');
     UIkit.modal('#modal-timeline-comment').hide();
   });
+};
+/**
+ * 删除动态
+ */
+
+
+window.deleteTimeline = function (timelineId) {
+  if (confirm('确定要删除这条动态')) {
+    $.ajax({
+      url: makeUrl('/timelines/' + timelineId),
+      method: 'DELETE',
+      success: function success(result, status, xhr) {
+        console.log('deleteTimeline success', result, status, xhr, xhr.status);
+
+        if (xhr.status === 204) {
+          $('.item-timeline-' + timelineId).remove();
+        }
+      },
+      error: function error(xhr, status, _error2) {
+        console.log('deleteTimeline error', xhr, status, _error2);
+      }
+    });
+  }
+};
+
+/***/ }),
+
+/***/ "./resources/js/web/utility.js":
+/*!*************************************!*\
+  !*** ./resources/js/web/utility.js ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+window.makeUrl = function (path, params) {
+  var origin = window.location.origin;
+  var url = origin;
+
+  if (path !== undefined) {
+    url += path;
+  } // TODO: params
+  // if (params)
+
+
+  return url;
 };
 
 /***/ }),

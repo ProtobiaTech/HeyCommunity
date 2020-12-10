@@ -11,19 +11,16 @@
       <div>{{ $timeline->created_at->diffForHumans() }}</div>
     </div>
 
-    <div class="post-btn-action">
-      <span class="icon-more uil-ellipsis-h"></span>
-      <div class="mt-0 p-2" uk-dropdown="pos:bottom-right; mode:hover;" style="display:none;">
-        <ul class="uk-nav uk-dropdown-nav">
-          @if (Auth::id() === $timeline->user->id)
-            <li><a href="#"><i class="uil-edit-alt mr-1"></i>编辑</a></li>
-            <li><a href="#" class="text-danger"><i class="uil-trash-alt mr-1"></i>删除</a></li>
-          @else
-            <li><a href="#"><i class="uil-exclamation-circle mr-1"></i>报告滥用</a></li>
-          @endif
-        </ul>
+    @if (Auth::id() === $timeline->user->id)
+      <div class="post-btn-action">
+        <span class="icon-more uil-ellipsis-h"></span>
+        <div class="mt-0 p-2" uk-dropdown="pos:bottom-right; mode:hover;" style="display:none;">
+          <ul class="uk-nav uk-dropdown-nav">
+            <li><a href="javascript:deleteTimeline({{ $timeline->id }})" class="text-danger"><i class="uil-trash-alt mr-1"></i>删除</a></li>
+          </ul>
+        </div>
       </div>
-    </div>
+    @endif
   </div>
 
   <!-- post content -->

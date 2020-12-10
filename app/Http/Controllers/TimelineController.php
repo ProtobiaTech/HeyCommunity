@@ -137,4 +137,18 @@ class TimelineController extends Controller
 
         return redirect()->back();
     }
+
+    /**
+     * Destroy timeline
+     */
+    public function destroy(Timeline $timeline)
+    {
+        if (Auth::id() == $timeline->user_id) {
+            $timeline->delete();
+
+            return response('操作成功', 204);
+        } else {
+            return response('无操作权限', 403);
+        }
+    }
 }

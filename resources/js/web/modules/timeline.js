@@ -283,3 +283,25 @@ window.timelineCommentHandler = function(event) {
     UIkit.modal('#modal-timeline-comment').hide();
   });
 };
+
+/**
+ * 删除动态
+ */
+window.deleteTimeline = function(timelineId) {
+  if (confirm('确定要删除这条动态')) {
+    $.ajax({
+      url: makeUrl('/timelines/' + timelineId),
+      method: 'DELETE',
+      success: function(result, status, xhr) {
+        console.log('deleteTimeline success', result, status, xhr, xhr.status);
+
+        if (xhr.status === 204) {
+          $('.item-timeline-' + timelineId).remove();
+        }
+      },
+      error: function(xhr, status, error) {
+        console.log('deleteTimeline error', xhr, status, error);
+      },
+    });
+  }
+};
